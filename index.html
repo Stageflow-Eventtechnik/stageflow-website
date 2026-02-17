@@ -1,10 +1,495 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="de">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stageflow Eventtechnik</title>
+  <meta name="description" content="Stageflow Eventtechnik – Licht, Ton, Bühne & Show für Events, Firmenfeiern und Konzerte." />
+
+  <style>
+    :root{
+      --bg: #07090c;
+      --bg2:#0b0f14;
+      --card:#0f1620;
+      --text:#e9eef6;
+      --muted:#a9b4c3;
+      --line: rgba(255,255,255,.08);
+      --green:#8cff2a;   /* Logo-Akzent */
+      --green2:#2dff9f;  /* sekundär */
+      --shadow: 0 14px 40px rgba(0,0,0,.55);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1100px 560px at 20% 20%, rgba(140,255,42,.12), transparent 55%),
+        radial-gradient(900px 520px at 80% 10%, rgba(45,255,159,.10), transparent 55%),
+        radial-gradient(900px 520px at 75% 85%, rgba(140,255,42,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,9,12,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .navin{display:flex; align-items:center; justify-content:space-between; gap:14px}
+    .brand{display:flex; align-items:center; gap:10px; min-width: 180px}
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--green));
+      box-shadow: 0 0 18px rgba(140,255,42,.55);
+    }
+    .brand span{font-weight:700; letter-spacing:.4px}
+    .menu{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .menu a{
+      padding:10px 12px;
+      border:1px solid transparent;
+      border-radius:999px;
+      color:var(--muted);
+      transition:.18s ease;
+    }
+    .menu a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
+
+    .hero{
+      padding:44px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .heroLeft{padding:26px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.02);
+    }
+    .pulse{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(140,255,42,.65);
+      position:relative;
+    }
+    .pulse::after{
+      content:"";
+      position:absolute; inset:-10px;
+      border-radius:50%;
+      border:1px solid rgba(140,255,42,.35);
+      animation: ping 1.6s infinite;
+    }
+    @keyframes ping{
+      0%{transform:scale(.5); opacity:.7}
+      100%{transform:scale(1.35); opacity:0}
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height:1.06;
+      letter-spacing:-.7px;
+    }
+    .accent{
+      background: linear-gradient(90deg, #ffffff, rgba(255,255,255,.72));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .green{
+      color: var(--green);
+      text-shadow: 0 0 22px rgba(140,255,42,.22);
+    }
+    .lead{
+      color:var(--muted);
+      font-size: 1.05rem;
+      line-height:1.65;
+      max-width: 62ch;
+      margin:0 0 18px;
+    }
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      transition:.18s ease;
+      font-weight:650;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.05)}
+    .btnPrimary{
+      border-color: rgba(140,255,42,.35);
+      background: linear-gradient(180deg, rgba(140,255,42,.18), rgba(140,255,42,.08));
+      box-shadow: 0 0 0 4px rgba(140,255,42,.06);
+    }
+    .btnPrimary:hover{background: linear-gradient(180deg, rgba(140,255,42,.24), rgba(140,255,42,.10))}
+    .small{font-size:.92rem; color:var(--muted)}
+
+    .heroRight{
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .logoBox{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background:
+        radial-gradient(700px 240px at 30% 30%, rgba(140,255,42,.16), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      padding:16px;
+      flex: 1;
+      display:flex; align-items:center; justify-content:center;
+      min-height: 210px;
+    }
+    .logoBox img{
+      width:100%;
+      max-width: 520px;
+      height:auto;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.55));
+    }
+
+    .quick{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    .qcard{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .qcard b{display:block; margin-bottom:6px}
+    .qcard span{color:var(--muted); font-size:.92rem; line-height:1.5}
+
+    section{padding:22px 0}
+    .sectionTitle{
+      display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+      margin: 0 0 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: clamp(20px, 2.4vw, 28px);
+      letter-spacing:-.3px;
+    }
+    .sectionTitle p{margin:0; color:var(--muted)}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+    @media (max-width: 920px){ .grid3{grid-template-columns:1fr} }
+
+    .card{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .icon{
+      width:44px; height:44px; border-radius:14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(140,255,42,.25);
+      background: rgba(140,255,42,.08);
+      margin-bottom:10px;
+      box-shadow: 0 0 0 4px rgba(140,255,42,.05);
+      font-size:20px;
+    }
+    .card h3{margin:0 0 6px}
+    .card p{margin:0; color:var(--muted); line-height:1.6}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 920px){ .split{grid-template-columns:1fr} }
+
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .list li{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding:12px 12px;
+      border-radius:14px;
+      color:var(--muted);
+    }
+    .list li b{color:var(--text)}
+    .badge{
+      display:inline-block;
+      font-size:.82rem;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(140,255,42,.25);
+      background: rgba(140,255,42,.08);
+      color: #dfffd0;
+      margin-left:8px;
+    }
+
+    .contact{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .contact{grid-template-columns:1fr} }
+    .formRow{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 620px){ .formRow{grid-template-columns:1fr} }
+
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline:none;
+    }
+    input:focus, textarea:focus{border-color: rgba(140,255,42,.45); box-shadow: 0 0 0 4px rgba(140,255,42,.08)}
+    textarea{min-height:110px; resize:vertical}
+
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .foot{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      flex-wrap:wrap;
+    }
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links a{color:var(--muted)}
+    .links a:hover{color:var(--text)}
+  </style>
 </head>
+
 <body>
-  <h1>Willkommen!</h1>
-  <p>Website im Aufbau 🚀</p>
+  <div class="nav">
+    <div class="wrap navin">
+      <a class="brand" href="#top">
+        <span class="dot"></span>
+        <span>Stageflow</span>
+      </a>
+      <nav class="menu" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#referenzen">Referenzen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="panel heroLeft">
+          <div class="kicker"><span class="pulse"></span> Eventtechnik für Shows, Firmen & Live-Events</div>
+          <h1 class="accent">Mehr Wirkung auf der Bühne. <span class="green">Sauber geplant.</span> Perfekt umgesetzt.</h1>
+          <p class="lead">
+            <b>Stageflow Eventtechnik</b> liefert Licht, Ton und Bühnen-Setup – zuverlässig, pünktlich und mit einem Look,
+            der zu deinem Event passt.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#kontakt">Angebot anfragen</a>
+            <a class="btn" href="#leistungen">Leistungen ansehen</a>
+            <span class="small">✅ Kostenlose Erstberatung</span>
+          </div>
+        </div>
+
+        <div class="heroRight">
+          <div class="logoBox panel" aria-label="Logo">
+            <img src="logo.png" alt="Stageflow Eventtechnik Logo">
+          </div>
+
+          <div class="quick">
+            <div class="qcard">
+              <b>🚚 Lieferung & Aufbau</b>
+              <span>Alles aus einer Hand – inkl. Abbau.</span>
+            </div>
+            <div class="qcard">
+              <b>🎚️ Technik-Operator</b>
+              <span>Bedienung für Licht / Ton auf Wunsch.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen">
+      <div class="sectionTitle">
+        <h2>Leistungen</h2>
+        <p>Modular – du buchst nur, was du brauchst.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <div class="icon">💡</div>
+          <h3>Licht</h3>
+          <p>Ambiente, Spots, Moving-Heads, Effekt-Look – passend zu Location & Stimmung.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔊</div>
+          <h3>Ton</h3>
+          <p>Sprachverständlichkeit & Druck, sauber abgestimmt – für Indoor & Outdoor.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧱</div>
+          <h3>Bühne & Rigging</h3>
+          <p>Stative/Truss, sichere Aufbauten, Kabelmanagement – ordentlich & professionell.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ablauf">
+      <div class="sectionTitle">
+        <h2>So läuft’s ab</h2>
+        <p>Schnell, klar, ohne Stress.</p>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h3>1) Briefing & Location-Check <span class="badge">kostenlos</span></h3>
+          <p>Du sagst uns: Event-Typ, Gästezahl, Location. Wir klären Technikbedarf & Timing.</p>
+          <ul class="list">
+            <li><b>Input:</b> Datum, Ort, Ablaufplan</li>
+            <li><b>Ziel:</b> passendes Setup + klare Kosten</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>2) Aufbau, Show, Abbau</h3>
+          <p>Wir liefern pünktlich, bauen sauber auf, betreuen auf Wunsch die Technik und bauen wieder ab.</p>
+          <ul class="list">
+            <li><b>Aufbau:</b> vor Eventbeginn</li>
+            <li><b>Show:</b> Operator optional</li>
+            <li><b>Abbau:</b> direkt nach Ende</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="referenzen">
+      <div class="sectionTitle">
+        <h2>Referenzen</h2>
+        <p>Hier kannst du später Logos/Events ergänzen.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Firmenfeier</h3>
+          <p>Licht-Ambiente + Sprachton + Musik – inkl. Aufbau & Abbau.</p>
+        </div>
+        <div class="card">
+          <h3>Live-Act / DJ</h3>
+          <p>PA + Monitoring + Effektlicht – clean und druckvoll.</p>
+        </div>
+        <div class="card">
+          <h3>Vereins-Event</h3>
+          <p>Flexible Technikpakete – auch für kleinere Budgets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="sectionTitle">
+        <h2>Kontakt</h2>
+        <p>Schreib kurz – wir melden uns schnell zurück.</p>
+      </div>
+
+      <div class="contact">
+        <div class="card">
+          <!-- Hinweis: GitHub Pages kann keine echten Formular-Backends ohne Extras.
+               Daher: mailto-Variante (kostenlos) -->
+          <form action="mailto:DEINE-EMAIL@DOMAIN.DE" method="post" enctype="text/plain">
+            <div class="formRow">
+              <div>
+                <label for="name" class="small">Name</label>
+                <input id="name" name="Name" placeholder="Max Mustermann" required>
+              </div>
+              <div>
+                <label for="mail" class="small">E-Mail</label>
+                <input id="mail" name="Email" type="email" placeholder="max@mail.de" required>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label for="msg" class="small">Nachricht</label>
+              <textarea id="msg" name="Nachricht" placeholder="Datum, Ort, Gästezahl, was du brauchst…"></textarea>
+            </div>
+
+            <div class="ctaRow" style="margin-top:12px">
+              <button class="btn btnPrimary" type="submit">E-Mail öffnen</button>
+              <a class="btn" href="tel:+49XXXXXXXXXX">Anrufen</a>
+              <span class="small">Oder direkt: <a href="mailto:DEINE-EMAIL@DOMAIN.DE">DEINE-EMAIL@DOMAIN.DE</a></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Infos</h3>
+          <p style="color:var(--muted); line-height:1.6; margin-top:6px">
+            <b>Stageflow Eventtechnik</b><br>
+            Region: (z.B. NRW / Rheinland / …)<br>
+            Telefon: +49 …<br>
+            E-Mail: DEINE-EMAIL@DOMAIN.DE
+          </p>
+
+          <ul class="list">
+            <li><b>Verfügbarkeit:</b> Mo–So nach Absprache</li>
+            <li><b>Leistungen:</b> Licht · Ton · Bühne</li>
+            <li><b>Stil:</b> modern · clean · grün-Akzente</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot" style="padding:0">
+        <div>© <span id="y"></span> Stageflow Eventtechnik</div>
+        <div class="links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
