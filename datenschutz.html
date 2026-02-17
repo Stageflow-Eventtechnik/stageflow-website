@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datenschutz – Stageflow Eventtechnik</title>
+  <meta name="robots" content="noindex,follow" />
+  <style>
+    :root{
+      --bg:#07090c; --bg2:#0b0f14; --card:#0f1620;
+      --text:#e9eef6; --muted:#a9b4c3; --line:rgba(255,255,255,.08);
+      --green:#8cff2a; --shadow:0 14px 40px rgba(0,0,0,.55);
+      --radius:18px; --max:900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 560px at 20% 20%, rgba(140,255,42,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,9,12,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .navin{display:flex; align-items:center; justify-content:space-between; gap:14px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+    .dot{width:10px; height:10px; border-radius:50%; background:var(--green); box-shadow:0 0 18px rgba(140,255,42,.55)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{
+      text-decoration:none;
+      padding:10px 12px; border-radius:999px; color:var(--muted); border:1px solid transparent
+    }
+    .menu a:hover{color:var(--text); border-color:var(--line); background:rgba(255,255,255,.03)}
+    .panel{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:20px;
+    }
+    h1{margin:16px 0 10px; font-size: clamp(26px, 3.6vw, 40px); letter-spacing:-.5px}
+    h2{margin:18px 0 8px; font-size: 1.2rem}
+    p,li{color:var(--muted); line-height:1.7}
+    .hint{border-left:3px solid rgba(140,255,42,.5); padding-left:12px; color:var(--muted)}
+    .footer{margin-top:18px; color:var(--muted); border-top:1px solid var(--line); padding-top:14px}
+    code{color:#dfffd0}
+    ul{padding-left:18px}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="wrap navin">
+      <a class="brand" href="index.html"><span class="dot"></span><b>Stageflow</b></a>
+      <nav class="menu" aria-label="Navigation">
+        <a href="index.html#kontakt">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <h1>Datenschutzerklärung</h1>
+
+    <div class="panel">
+      <p class="hint">
+        ⚠️ Hinweis: Das ist eine solide Basis für eine einfache Website ohne Tracking/Analytics.
+        Wenn du Tools wie Google Analytics, Meta Pixel, YouTube-Embeds oder Newsletter nutzt, muss das ergänzt werden.
+      </p>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlicher im Sinne der DSGVO:<br>
+        <b>Stageflow Eventtechnik</b> – VORNAME NACHNAME<br>
+        STRASSE HAUSNUMMER, PLZ ORT, Deutschland<br>
+        E-Mail: <a href="mailto:DEINE-EMAIL@DOMAIN.DE">DEINE-EMAIL@DOMAIN.DE</a><br>
+        Telefon: <a href="tel:+49XXXXXXXXXX">+49 …</a>
+      </p>
+
+      <h2>2. Hosting</h2>
+      <p>
+        Diese Website wird über <b>GitHub Pages</b> bereitgestellt. Beim Aufruf der Website werden durch den Hosting-Anbieter
+        technisch erforderliche Zugriffsdaten verarbeitet (z. B. IP-Adresse, Datum/Uhrzeit, aufgerufene Seite, User-Agent),
+        um die Website auszuliefern und die Sicherheit zu gewährleisten.
+      </p>
+
+      <h2>3. Zugriffsdaten / Server-Logfiles</h2>
+      <p>
+        Beim Besuch unserer Website werden automatisiert Daten erfasst, die Ihr Browser an den Server übermittelt.
+        Diese Daten sind technisch notwendig, um die Website anzuzeigen und Stabilität sowie Sicherheit zu gewährleisten.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+      </p>
+
+      <h2>4. Kontaktaufnahme</h2>
+      <p>
+        Wenn du uns per E-Mail kontaktierst, verarbeiten wir deine Angaben zur Bearbeitung der Anfrage und für mögliche Anschlussfragen.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+
+      <h2>5. Cookies</h2>
+      <p>
+        Diese Website verwendet keine Cookies zu Tracking- oder Marketingzwecken.
+        (Hinweis: Je nach Hosting/Browser können technisch notwendige Cookies entstehen. Wenn du Tools einbindest, ändert sich das.)
+      </p>
+
+      <h2>6. Deine Rechte</h2>
+      <p>Du hast jederzeit das Recht auf:</p>
+      <ul>
+        <li>Auskunft (Art. 15 DSGVO)</li>
+        <li>Berichtigung (Art. 16 DSGVO)</li>
+        <li>Löschung (Art. 17 DSGVO)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      </ul>
+
+      <h2>7. Beschwerderecht</h2>
+      <p>
+        Du hast das Recht, dich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO),
+        wenn du der Ansicht bist, dass die Verarbeitung deiner personenbezogenen Daten gegen die DSGVO verstößt.
+      </p>
+
+      <h2>8. SSL-/TLS-Verschlüsselung</h2>
+      <p>
+        Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung
+        (erkennbar an <code>https://</code> in der Adresszeile).
+      </p>
+
+      <h2>9. Änderungen dieser Datenschutzerklärung</h2>
+      <p>
+        Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht
+        oder um Änderungen unserer Leistungen umzusetzen.
+      </p>
+
+      <div class="footer">
+        <p>Stand: <span id="d"></span></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const d = new Date();
+    document.getElementById("d").textContent = d.toLocaleDateString("de-DE");
+  </script>
+</body>
+</html>
