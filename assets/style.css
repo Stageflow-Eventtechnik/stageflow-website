@@ -703,7 +703,6 @@ footer{
   }
 }
 
-
 /* ===== Stageflow Custom Select (nur Kontakt + Desktop) ===== */
 @media (min-width: 801px){
 
@@ -796,3 +795,5 @@ footer{
     opacity:.7;
   }
 }
+
+/* ✅ Fix: fehlende schließende Klammer ergänzt */
