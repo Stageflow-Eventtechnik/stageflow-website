@@ -121,70 +121,6 @@ footer{
   pointer-events:auto;
 }
 
-/* ===== MOBILE NAV ===== */
-.nav-toggle{
-  display:none;
-  background: transparent;
-  border:1px solid #ffffff22;
-  color:#fff;
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  font-size:22px;
-  cursor:pointer;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-@media (max-width: 900px){
-
-  .nav-toggle{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .nav-links{
-    display:none;
-    position:fixed;
-    top:72px;
-    left:0;
-    right:0;
-    bottom:0;
-    background:rgba(0,0,0,0.96);
-    backdrop-filter:blur(8px);
-    flex-direction:column;
-    gap:14px;
-    padding:20px;
-    z-index:2147483646;
-    overflow-y:auto;
-  }
-
-  .nav.open .nav-links{ display:flex; }
-
-  .menu{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    width:100%;
-  }
-
-  .nav-cta{
-    width:100%;
-    text-align:center;
-  }
-
-  .g-item{ grid-column: span 6; }
-}
-
-@media(max-width:560px){
-  .g-item{ grid-column: span 12; }
-}
-
 /* ===== BEWERTUNGEN ===== */
 .reviews{padding:80px 0}
 .review-list{display:grid;gap:16px}
@@ -230,3 +166,73 @@ footer{
   cursor:pointer;
 }
 .star.is-on{color:var(--accent)}
+
+
+/* ===== Mobile Navigation ===== */
+.nav-toggle{
+  display:none;
+  background: transparent;
+  border:1px solid #ffffff22;
+  color:#fff;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.nav-cta{ white-space:nowrap; }
+
+@media (max-width: 900px){
+
+  .nav-inner{
+    position:relative;
+    gap:12px;
+  }
+
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:72px;
+    background:#0b0b0ff2;
+    border-bottom:1px solid #ffffff14;
+    padding:14px 20px 18px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+    z-index:5000;
+  }
+
+  .nav.open .nav-links{
+    display:flex;
+  }
+
+  .menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+
+  .menu a{ margin:0; }
+
+  .nav-cta{
+    width:100%;
+    text-align:center;
+  }
+}
+
