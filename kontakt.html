@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<body class="page-contact">
-
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kontakt – Stageflow</title>
 
-  <link href="assets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="page-contact">
 
   <!-- NAVIGATION (identisch zu den anderen Seiten) -->
   <div class="nav">
@@ -46,108 +44,115 @@
 
   <!-- SEITENINHALT -->
   <section class="wrap">
-
     <h1>Event anfragen</h1>
 
-<form id="contactForm" class="review-form contact-form" action="#" method="POST">
+    <form id="contactForm" class="review-form contact-form" action="#" method="POST">
+      <div class="form-grid">
 
-  <div class="form-grid">
+        <input type="text" name="name" placeholder="Name / Firma" required>
+        <input type="email" name="email" placeholder="E-Mail" required>
 
-    <input type="text" name="name" placeholder="Name / Firma" required>
-    <input type="email" name="email" placeholder="E-Mail" required>
+        <input type="tel" name="phone" placeholder="Telefon" required>
+        <input type="date" name="date" required>
 
-    <input type="tel" name="phone" placeholder="Telefon" required>
-    <input type="date" name="date" required>
+        <input type="text" name="city" placeholder="PLZ + Ort" required>
 
-    <input type="text" name="city" placeholder="PLZ + Ort" required>
-    <select name="eventtype" required>
-      <option value="">Eventtyp wählen</option>
-      <option>Hochzeit</option>
-      <option>Geburtstag</option>
-      <option>Firmenevent</option>
-      <option>Club / Party</option>
-      <option>Konzert</option>
-      <option>Sonstiges</option>
-    </select>
+        <!-- Select: Eventtyp -->
+        <div class="sf-select">
+          <select name="eventtype" required>
+            <option value="">Eventtyp wählen</option>
+            <option>Hochzeit</option>
+            <option>Geburtstag</option>
+            <option>Firmenevent</option>
+            <option>Club / Party</option>
+            <option>Konzert</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
 
-    <select name="guests" required>
-      <option value="">Gästezahl</option>
-      <option>&lt;50</option>
-      <option>50–100</option>
-      <option>100–200</option>
-      <option>200–500</option>
-      <option>500+</option>
-    </select>
+        <!-- Select: Gäste -->
+        <div class="sf-select">
+          <select name="guests" required>
+            <option value="">Gästezahl</option>
+            <option>&lt;50</option>
+            <option>50–100</option>
+            <option>100–200</option>
+            <option>200–500</option>
+            <option>500+</option>
+          </select>
+        </div>
 
-    <select name="location">
-      <option value="">Location-Art</option>
-      <option>Saal / Hotel</option>
-      <option>Outdoor</option>
-      <option>Zelt</option>
-      <option>Club</option>
-      <option>Privat</option>
-    </select>
+        <!-- Select: Location -->
+        <div class="sf-select">
+          <select name="location">
+            <option value="">Location-Art</option>
+            <option>Saal / Hotel</option>
+            <option>Outdoor</option>
+            <option>Zelt</option>
+            <option>Club</option>
+            <option>Privat</option>
+          </select>
+        </div>
 
-    <select name="budget">
-      <option value="">Budgetrahmen</option>
-      <option>&lt;500 €</option>
-      <option>500–1.000 €</option>
-      <option>1.000–2.500 €</option>
-      <option>2.500–5.000 €</option>
-      <option>5.000+</option>
-    </select>
+        <!-- Select: Budget -->
+        <div class="sf-select">
+          <select name="budget">
+            <option value="">Budgetrahmen</option>
+            <option>&lt;500 €</option>
+            <option>500–1.000 €</option>
+            <option>1.000–2.500 €</option>
+            <option>2.500–5.000 €</option>
+            <option>5.000+</option>
+          </select>
+        </div>
 
-    <!-- volle Breite -->
-    <input class="span-2" type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
+        <!-- volle Breite -->
+        <input class="span-2" type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
 
-    <h3 class="span-2 tech-title">Benötigte Technik</h3>
+        <h3 class="span-2 tech-title">Benötigte Technik</h3>
 
-    <div class="check-grid span-2">
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="Ton">
-        <span>Ton / PA</span>
-      </label>
+        <div class="check-grid span-2">
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="Ton">
+            <span>Ton / PA</span>
+          </label>
 
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="Licht">
-        <span>Lichttechnik</span>
-      </label>
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="Licht">
+            <span>Lichttechnik</span>
+          </label>
 
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="DJ">
-        <span>DJ</span>
-      </label>
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="DJ">
+            <span>DJ</span>
+          </label>
 
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="Bühne">
-        <span>Bühne / Truss</span>
-      </label>
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="Bühne">
+            <span>Bühne / Truss</span>
+          </label>
 
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="Mikro">
-        <span>Mikrofone</span>
-      </label>
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="Mikro">
+            <span>Mikrofone</span>
+          </label>
 
-      <label class="check-field">
-        <input type="checkbox" name="tech[]" value="Beamer">
-        <span>Beamer / Screen</span>
-      </label>
-    </div>
+          <label class="check-field">
+            <input type="checkbox" name="tech[]" value="Beamer">
+            <span>Beamer / Screen</span>
+          </label>
+        </div>
 
-    <textarea class="span-2" name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
+        <textarea class="span-2" name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
 
-    <label class="span-2 dsgvo">
-      <input type="checkbox" required>
-      <span>Ich habe die Datenschutzerklärung gelesen</span>
-    </label>
+        <label class="span-2 dsgvo">
+          <input type="checkbox" required>
+          <span>Ich habe die Datenschutzerklärung gelesen</span>
+        </label>
 
-    <button class="span-2 btn-submit" type="submit">Anfrage senden</button>
-
-  </div>
-
-</form>
-
-
+        <button class="span-2 btn-submit" type="submit">Anfrage senden</button>
+      </div>
+    </form>
   </section>
 
   <footer>
@@ -155,8 +160,5 @@
   </footer>
 
   <script src="assets/script.js"></script>
-
 </body>
 </html>
-
-
