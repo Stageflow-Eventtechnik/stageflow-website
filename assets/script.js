@@ -123,3 +123,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+
+// ===== Mobile Nav Toggle =====
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".nav");
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+
+  if (nav && toggle && links) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      toggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
+    });
+
+    links.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        nav.classList.remove("open");
+        toggle.textContent = "☰";
+      }
+    });
+  }
+});
