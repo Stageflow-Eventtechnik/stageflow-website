@@ -593,38 +593,6 @@ footer{
 
 --------------------------------------------------------------------------------------------Kontaktformular----------------------------------------------------------------------------------------
 
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.check-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.check {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 600px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  .check-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
----------------------------------------------
 
 /* ===== Kontaktformular: Symmetrie + saubere Checkboxen ===== */
 
@@ -654,12 +622,7 @@ footer{
 }
 
 /* Checkboxen: Raster + Input links, Text sauber daneben */
-.contact-form .check-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 18px;
-  padding: 6px 0 2px;
-}
+
 
 @media (max-width: 800px){
   .contact-form .check-grid{
@@ -711,6 +674,96 @@ footer{
   width: fit-content;
 }
 
-.contact-form .btn-submit:hover{
-  background: rgba(255,255,255,0.11);
+
+/* ===== Kontaktseite: Styles nur hier (damit nix anderes beeinflusst wird) ===== */
+
+.page-contact .form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
 }
+
+.page-contact .span-2{
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 800px){
+  .page-contact .form-grid{
+    grid-template-columns: 1fr;
+  }
+  .page-contact .span-2{
+    grid-column: auto;
+  }
+}
+
+/* Technik-Überschrift */
+.page-contact .tech-title{
+  margin: 8px 0 0;
+}
+
+/* Checkboxen als saubere Kacheln */
+.page-contact .check-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+  padding: 8px 0 2px;
+}
+
+@media (max-width: 800px){
+  .page-contact .check-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-contact .check-field{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  background: rgba(0,0,0,.18);
+}
+
+.page-contact .check-field input{
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.page-contact .check-field span{
+  line-height: 1.2;
+  font-weight: 600;
+  opacity: .95;
+}
+
+/* DSGVO Zeile */
+.page-contact .dsgvo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top: 6px;
+}
+
+/* Button optisch besser (aber nicht riesig) */
+.page-contact .btn-submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(180,230,60,.35);
+  background: linear-gradient(180deg, rgba(180,230,60,.22), rgba(124,167,21,.10));
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .2px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.page-contact .btn-submit:hover{
+  border-color: rgba(180,230,60,.55);
+  background: linear-gradient(180deg, rgba(180,230,60,.30), rgba(124,167,21,.14));
+}
+
