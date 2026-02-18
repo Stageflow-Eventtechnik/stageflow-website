@@ -767,6 +767,11 @@ footer{
   background: linear-gradient(180deg, rgba(180,230,60,.30), rgba(124,167,21,.14));
 }
 
-
+----------------------------------------------------------------------------------------
+/* Fix NUR Kontaktformular: verhindert Überschneiden ohne Rest der Seite zu ändern */
+.page-contact .review-form,
+.page-contact .review-form * {
+  box-sizing: border-box;
+}
 
 
