@@ -343,8 +343,7 @@ footer{
 
 
 
-
-/* ===== Mobile Navigation ===== */
+/* ===== Mobile Navigation (ein Block, stabil) ===== */
 .nav-toggle{
   display:none;
   background: transparent;
@@ -365,26 +364,38 @@ footer{
 
 .nav-cta{ white-space:nowrap; }
 
+/* Wichtig: Nav über Content halten (auch mit backdrop-filter) */
+.nav{
+  z-index: 1000;
+}
+
 @media (max-width: 900px){
   .nav-inner{
-    position:relative;
+    position:relative; /* Anker für das absolute Dropdown */
     gap:12px;
   }
 
-  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
 
+  /* Dropdown direkt unter der Nav, nicht "fixed overlay" */
   .nav-links{
     display:none;
     position:absolute;
     left:0;
     right:0;
     top:72px;
-    background:#0b0b0ff2;
+    background: rgba(0,0,0,.95);
+    backdrop-filter: blur(6px);
     border-bottom:1px solid #ffffff14;
     padding:14px 20px 18px;
     flex-direction:column;
     align-items:flex-start;
     gap:14px;
+    z-index: 1001; /* über Inhalt */
   }
 
   .nav.open .nav-links{ display:flex; }
@@ -404,68 +415,3 @@ footer{
   }
 }
 
-/* Fix: Mobile Menü immer über Content (aber unter Lightbox) */
-@media (max-width: 900px){
-  .nav{
-    z-index: 100;          /* nav über Seite */
-  }
-  .nav-links{
-    z-index: 101;          /* dropdown über Inhalt */
-  }
-}
-
-
-/* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
-@media (max-width: 900px){
-
-  /* altes Menü standardmäßig AUS */
-  .nav .menu{ 
-    display:none !important;
-  }
-
-  /* wenn nav "open" ist, Menü EIN */
-  .nav.open .menu{
-    display:flex !important;
-    flex-direction:column;
-    gap:10px;
-    width:100%;
-  }
-
-  /* Hamburger sichtbar */
-  .nav-toggle{
-    display:inline-flex !important;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* Dropdown-Container */
-  .nav-links{
-    display:none;
-    position:absolute;
-    left:0; right:0;
-    top:72px;
-    background:#0b0b0ff2;
-    border-bottom:1px solid #ffffff14;
-    padding:14px 20px 18px;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:14px;
-  }
-
-  .nav.open .nav-links{ display:flex; }
-
-  .nav-cta{
-    width:100%;
-    text-align:center;
-  }
-}
-
-
-/* Mobile Menu Overlay Fix */
-@media (max-width: 768px) {
-  .nav-links {
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(6px);
-    z-index: 9999;
-  }
-}
