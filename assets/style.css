@@ -509,3 +509,23 @@ footer{
 .hint{opacity:.8;font-size:.95rem}
 .form-status{margin-top:10px;min-height:1.2em;opacity:.9}
 .thanks-card{max-width:760px;margin:0 auto}
+
+
+/* Mobile Menü Overlay Fix */
+@media (max-width: 900px) {
+
+  .nav-links {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(8px);
+
+    z-index: 10000;
+    overflow-y: auto;
+  }
+
+}
