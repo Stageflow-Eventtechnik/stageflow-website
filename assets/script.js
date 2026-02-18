@@ -1,46 +1,23 @@
 const GALLERY = {
   geburtstag50: [
-    { src: "assets/gallery/geburtstag50/1.jpg", title: "Geburtstag 50 – Setup" },
-    { src: "assets/gallery/geburtstag50/2.jpg", title: "Geburtstag 50 – Tanzfläche" },
-    { src: "assets/gallery/geburtstag50/3.jpg", title: "Geburtstag 50 – Lichtshow" },
+    { src: "assets/gallery/geburtstag50/1.jpg", title: "Geburtstag 50" },
+    { src: "assets/gallery/geburtstag50/2.jpg", title: "Geburtstag 50" },
   ],
 
   hochzeit: [
-    { src: "assets/gallery/hochzeit/1.jpg", title: "Hochzeit – Ambient" },
-    { src: "assets/gallery/hochzeit/2.jpg", title: "Hochzeit – Party" },
+    { src: "assets/gallery/hochzeit/1.jpg", title: "Hochzeit" },
+    { src: "assets/gallery/hochzeit/2.jpg", title: "Hochzeit" },
   ],
 
   firma: [
-    { src: "assets/gallery/firma/1.jpg", title: "Firmenfeier – Bühne" },
-    { src: "assets/gallery/firma/2.jpg", title: "Firmenfeier – Sound" },
-    { src: "assets/gallery/firma/3.jpg", title: "Firmenfeier – Publikum" },
-    { src: "assets/gallery/firma/4.jpg", title: "Firmenfeier – DJ" },
+    { src: "assets/gallery/firma/1.jpg", title: "Firmenfeier" },
+    { src: "assets/gallery/firma/2.jpg", title: "Firmenfeier" },
+    { src: "assets/gallery/firma/3.jpg", title: "Firmenfeier" },
+    { src: "assets/gallery/firma/4.jpg", title: "Firmenfeier" },
   ],
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Mobile Nav Toggle (Burger Menü) =====
-  const nav = document.querySelector(".nav");
-  const toggle = document.querySelector(".nav-toggle");
-  const linksWrap = document.querySelector(".nav-links");
-
-  if (nav && toggle && linksWrap) {
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      toggle.textContent = isOpen ? "✕" : "☰";
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    // Menü schließen beim Klick auf einen Link
-    linksWrap.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (!a) return;
-      nav.classList.remove("open");
-      toggle.textContent = "☰";
-      toggle.setAttribute("aria-expanded", "false");
-    });
-  }
-
   // ===== Galerie (nur wenn Galerie-Elemente vorhanden sind) =====
   const tabs = document.getElementById("galleryTabs");
   const grid = document.getElementById("galleryGrid");
@@ -146,3 +123,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+// ===== Mobile Nav Toggle =====
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".nav");
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+
+  if (nav && toggle && links) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      toggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
+    });
+
+    links.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        nav.classList.remove("open");
+        toggle.textContent = "☰";
+      }
+    });
+  }
+});
+
+
