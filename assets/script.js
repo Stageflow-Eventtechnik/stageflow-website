@@ -146,3 +146,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".nav");
+  const toggle = document.querySelector(".nav-toggle");
+  const linksWrap = document.querySelector(".nav-links");
+
+  if (!nav || !toggle) return;
+
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    toggle.textContent = nav.classList.contains("open") ? "✕" : "☰";
+  });
+
+  // optional: beim Klick auf Link wieder schließen
+  if (linksWrap) {
+    linksWrap.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        nav.classList.remove("open");
+        toggle.textContent = "☰";
+      }
+    });
+  }
+});
