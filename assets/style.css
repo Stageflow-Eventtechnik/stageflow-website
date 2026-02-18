@@ -783,3 +783,35 @@ footer{
 }
 
 
+----------------------------------------------------------------------------------------
+
+/* ===== Kontaktformular: Mobile Overflow Fix (nur Kontaktseite) ===== */
+.page-contact .review-form{
+  overflow: hidden;                 /* verhindert “rauslaufen” bei runden Ecken */
+}
+
+.page-contact .review-form input,
+.page-contact .review-form select,
+.page-contact .review-form textarea,
+.page-contact .review-form button{
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;           /* nur hier, nicht global */
+}
+
+.page-contact .form-grid{
+  min-width: 0;                     /* wichtig für Grid-Overflows */
+}
+
+.page-contact .form-grid > *{
+  min-width: 0;                     /* verhindert, dass Inhalte Spalten sprengen */
+}
+
+@media (max-width: 800px){
+  .page-contact .form-grid{
+    grid-template-columns: 1fr !important;
+  }
+  .page-contact .span-2{
+    grid-column: auto !important;
+  }
+}
