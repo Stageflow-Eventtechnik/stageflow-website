@@ -10,7 +10,7 @@
 
 <body>
 
-<!-- NAV -->
+<!-- NAVIGATION -->
 <div class="nav">
   <div class="nav-inner wrap">
 
@@ -18,19 +18,28 @@
       <img src="assets/logo.png" alt="Stageflow Logo">
     </a>
 
-    <nav class="menu">
-      <a href="index.html">Start</a>
-      <a href="leistungen.html">Leistungen</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
+    <!-- Hamburger Button (nur Mobile sichtbar per CSS) -->
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
+      ☰
+    </button>
 
-    <a class="btn" href="kontakt.html">Event anfragen</a>
+    <!-- Alles was einklappt -->
+    <div class="nav-links" id="navLinks">
+      <nav class="menu">
+        <a href="index.html">Start</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+
+      <a class="btn nav-cta" href="kontakt.html">Event anfragen</a>
+    </div>
 
   </div>
 </div>
+
 
 
 <section class="hero">
@@ -84,3 +93,4 @@
 
 </body>
 </html>
+
