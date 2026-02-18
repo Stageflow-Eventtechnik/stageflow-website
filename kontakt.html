@@ -1,111 +1,132 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt | Stageflow Eventtechnik</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Kontakt – Stageflow</title>
+
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">STAGEFLOW</div>
-  <button id="navToggle">☰</button>
-  <nav id="navLinks">
-    <a href="index.html">Start</a>
-    <a href="leistungen.html">Leistungen</a>
-    <a href="galerie.html">Galerie</a>
-    <a href="bewertungen.html">Bewertungen</a>
-    <a href="kontakt.html" class="active">Kontakt</a>
-  </nav>
-</header>
+  <!-- NAVIGATION (identisch zu den anderen Seiten) -->
+  <div class="nav">
+    <div class="nav-inner wrap">
 
-<main class="section">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Stageflow Logo">
+      </a>
 
-<h1>Event anfragen</h1>
+      <!-- Hamburger Button (nur Mobile sichtbar per CSS) -->
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
+        ☰
+      </button>
 
-<form id="contactForm" class="review-form" action="#" method="POST">
+      <!-- Alles was einklappt -->
+      <div class="nav-links" id="navLinks">
+        <nav class="menu">
+          <a href="index.html">Start</a>
+          <a href="leistungen.html">Leistungen</a>
+          <a href="galerie.html">Galerie</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="bewertungen.html">Bewertungen</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
 
-<div class="form-grid">
+        <a class="btn nav-cta" href="kontakt.html">Event anfragen</a>
+      </div>
 
-<input type="text" name="name" placeholder="Name / Firma" required>
-<input type="email" name="email" placeholder="E-Mail" required>
-<input type="tel" name="phone" placeholder="Telefon" required>
+    </div>
+  </div>
 
-<input type="date" name="date" required>
-<input type="text" name="city" placeholder="PLZ + Ort" required>
+  <!-- SEITENINHALT -->
+  <section class="wrap">
 
-<select name="eventtype" required>
-<option value="">Eventtyp wählen</option>
-<option>Hochzeit</option>
-<option>Geburtstag</option>
-<option>Firmenevent</option>
-<option>Club / Party</option>
-<option>Konzert</option>
-<option>Sonstiges</option>
-</select>
+    <h1>Event anfragen</h1>
 
-<select name="guests" required>
-<option value="">Gästezahl</option>
-<option><50</option>
-<option>50–100</option>
-<option>100–200</option>
-<option>200–500</option>
-<option>500+</option>
-</select>
+    <form id="contactForm" class="review-form" action="#" method="POST">
 
-<input type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
+      <div class="form-grid">
+        <input type="text" name="name" placeholder="Name / Firma" required>
+        <input type="email" name="email" placeholder="E-Mail" required>
+        <input type="tel" name="phone" placeholder="Telefon" required>
 
-<select name="location">
-<option value="">Location-Art</option>
-<option>Saal / Hotel</option>
-<option>Outdoor</option>
-<option>Zelt</option>
-<option>Club</option>
-<option>Privat</option>
-</select>
+        <input type="date" name="date" required>
+        <input type="text" name="city" placeholder="PLZ + Ort" required>
 
-<select name="budget">
-<option value="">Budgetrahmen</option>
-<option><500 €</option>
-<option>500–1.000 €</option>
-<option>1.000–2.500 €</option>
-<option>2.500–5.000 €</option>
-<option>5.000+</option>
-</select>
+        <select name="eventtype" required>
+          <option value="">Eventtyp wählen</option>
+          <option>Hochzeit</option>
+          <option>Geburtstag</option>
+          <option>Firmenevent</option>
+          <option>Club / Party</option>
+          <option>Konzert</option>
+          <option>Sonstiges</option>
+        </select>
 
-</div>
+        <select name="guests" required>
+          <option value="">Gästezahl</option>
+          <option>&lt;50</option>
+          <option>50–100</option>
+          <option>100–200</option>
+          <option>200–500</option>
+          <option>500+</option>
+        </select>
 
-<h3>Benötigte Technik</h3>
+        <input type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
 
-<div class="check-grid">
-<label class="check"><input type="checkbox" name="tech[]" value="Ton"> Ton / PA</label>
-<label class="check"><input type="checkbox" name="tech[]" value="Licht"> Lichttechnik</label>
-<label class="check"><input type="checkbox" name="tech[]" value="DJ"> DJ</label>
-<label class="check"><input type="checkbox" name="tech[]" value="Bühne"> Bühne / Truss</label>
-<label class="check"><input type="checkbox" name="tech[]" value="Mikro"> Mikrofone</label>
-<label class="check"><input type="checkbox" name="tech[]" value="Beamer"> Beamer / Screen</label>
-</div>
+        <select name="location">
+          <option value="">Location-Art</option>
+          <option>Saal / Hotel</option>
+          <option>Outdoor</option>
+          <option>Zelt</option>
+          <option>Club</option>
+          <option>Privat</option>
+        </select>
 
-<textarea name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
+        <select name="budget">
+          <option value="">Budgetrahmen</option>
+          <option>&lt;500 €</option>
+          <option>500–1.000 €</option>
+          <option>1.000–2.500 €</option>
+          <option>2.500–5.000 €</option>
+          <option>5.000+</option>
+        </select>
+      </div>
 
-<label class="check">
-<input type="checkbox" required>
-Ich habe die Datenschutzerklärung gelesen
-</label>
+      <h3>Benötigte Technik</h3>
 
-<button type="submit">Anfrage senden</button>
+      <div class="check-grid">
+        <label class="check"><input type="checkbox" name="tech[]" value="Ton"> Ton / PA</label>
+        <label class="check"><input type="checkbox" name="tech[]" value="Licht"> Lichttechnik</label>
+        <label class="check"><input type="checkbox" name="tech[]" value="DJ"> DJ</label>
+        <label class="check"><input type="checkbox" name="tech[]" value="Bühne"> Bühne / Truss</label>
+        <label class="check"><input type="checkbox" name="tech[]" value="Mikro"> Mikrofone</label>
+        <label class="check"><input type="checkbox" name="tech[]" value="Beamer"> Beamer / Screen</label>
+      </div>
 
-</form>
+      <textarea name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
 
-</main>
+      <label class="check">
+        <input type="checkbox" required>
+        Ich habe die Datenschutzerklärung gelesen
+      </label>
 
-<footer>
-  <p>© Stageflow Eventtechnik</p>
-</footer>
+      <button type="submit">Anfrage senden</button>
 
-<script src="assets/script.js"></script>
+    </form>
+
+  </section>
+
+  <footer>
+    © Stageflow Eventtechnik
+  </footer>
+
+  <script src="assets/script.js"></script>
 
 </body>
 </html>
