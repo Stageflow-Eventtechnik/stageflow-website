@@ -404,6 +404,16 @@ footer{
   }
 }
 
+/* Fix: Mobile Menü immer über Content (aber unter Lightbox) */
+@media (max-width: 900px){
+  .nav{
+    z-index: 100;          /* nav über Seite */
+  }
+  .nav-links{
+    z-index: 101;          /* dropdown über Inhalt */
+  }
+}
+
 
 /* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
 @media (max-width: 900px){
