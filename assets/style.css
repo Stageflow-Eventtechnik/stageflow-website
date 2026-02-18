@@ -340,3 +340,65 @@ footer{
 
 .acc-item.active .acc-content{ max-height: 220px; }
 .acc-item.active .acc-btn span{ transform: rotate(45deg); }
+
+
+
+/* ===== Mobile Navigation ===== */
+.nav-toggle{
+  display:none;
+  background: transparent;
+  border:1px solid #ffffff22;
+  color:#fff;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.nav-cta{ white-space:nowrap; }
+
+@media (max-width: 900px){
+  .nav-inner{
+    position:relative;
+    gap:12px;
+  }
+
+  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:72px;
+    background:#0b0b0ff2;
+    border-bottom:1px solid #ffffff14;
+    padding:14px 20px 18px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .nav.open .nav-links{ display:flex; }
+
+  .menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+
+  .menu a{ margin:0; }
+
+  .nav-cta{
+    width:100%;
+    text-align:center;
+  }
+}
