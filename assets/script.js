@@ -266,3 +266,27 @@ document.addEventListener("DOMContentLoaded", () => {
       list.innerHTML = '<p style="opacity:.8">Bewertungen konnten nicht geladen werden.</p>';
     });
 })();
+
+
+-----------------------------------------------------------------------------------------------------Kontaktformular------------------------------------------------------------------------------------------------------------------
+
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = new FormData(contactForm);
+    let body = "";
+
+    data.forEach((value, key) => {
+      body += key + ": " + value + "\n";
+    });
+
+    window.location.href =
+      "mailto:info@stageflow-eventtechnik.de?subject=Eventanfrage&body=" +
+      encodeURIComponent(body);
+  });
+}
+
