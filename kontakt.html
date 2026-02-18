@@ -48,77 +48,104 @@
 
     <h1>Event anfragen</h1>
 
-    <form id="contactForm" class="review-form" action="#" method="POST">
+<form id="contactForm" class="review-form contact-form" action="#" method="POST">
 
-      <div class="form-grid">
-        <input type="text" name="name" placeholder="Name / Firma" required>
-        <input type="email" name="email" placeholder="E-Mail" required>
-        <input type="tel" name="phone" placeholder="Telefon" required>
+  <div class="form-grid">
 
-        <input type="date" name="date" required>
-        <input type="text" name="city" placeholder="PLZ + Ort" required>
+    <input type="text" name="name" placeholder="Name / Firma" required>
+    <input type="email" name="email" placeholder="E-Mail" required>
 
-        <select name="eventtype" required>
-          <option value="">Eventtyp wählen</option>
-          <option>Hochzeit</option>
-          <option>Geburtstag</option>
-          <option>Firmenevent</option>
-          <option>Club / Party</option>
-          <option>Konzert</option>
-          <option>Sonstiges</option>
-        </select>
+    <input type="tel" name="phone" placeholder="Telefon" required>
+    <input type="date" name="date" required>
 
-        <select name="guests" required>
-          <option value="">Gästezahl</option>
-          <option>&lt;50</option>
-          <option>50–100</option>
-          <option>100–200</option>
-          <option>200–500</option>
-          <option>500+</option>
-        </select>
+    <input type="text" name="city" placeholder="PLZ + Ort" required>
+    <select name="eventtype" required>
+      <option value="">Eventtyp wählen</option>
+      <option>Hochzeit</option>
+      <option>Geburtstag</option>
+      <option>Firmenevent</option>
+      <option>Club / Party</option>
+      <option>Konzert</option>
+      <option>Sonstiges</option>
+    </select>
 
-        <input type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
+    <select name="guests" required>
+      <option value="">Gästezahl</option>
+      <option>&lt;50</option>
+      <option>50–100</option>
+      <option>100–200</option>
+      <option>200–500</option>
+      <option>500+</option>
+    </select>
 
-        <select name="location">
-          <option value="">Location-Art</option>
-          <option>Saal / Hotel</option>
-          <option>Outdoor</option>
-          <option>Zelt</option>
-          <option>Club</option>
-          <option>Privat</option>
-        </select>
+    <select name="location">
+      <option value="">Location-Art</option>
+      <option>Saal / Hotel</option>
+      <option>Outdoor</option>
+      <option>Zelt</option>
+      <option>Club</option>
+      <option>Privat</option>
+    </select>
 
-        <select name="budget">
-          <option value="">Budgetrahmen</option>
-          <option>&lt;500 €</option>
-          <option>500–1.000 €</option>
-          <option>1.000–2.500 €</option>
-          <option>2.500–5.000 €</option>
-          <option>5.000+</option>
-        </select>
-      </div>
+    <select name="budget">
+      <option value="">Budgetrahmen</option>
+      <option>&lt;500 €</option>
+      <option>500–1.000 €</option>
+      <option>1.000–2.500 €</option>
+      <option>2.500–5.000 €</option>
+      <option>5.000+</option>
+    </select>
 
-      <h3>Benötigte Technik</h3>
+    <!-- volle Breite -->
+    <input class="span-2" type="text" name="time" placeholder="Zeitraum (z.B. 18:00–02:00)" required>
 
-      <div class="check-grid">
-        <label class="check"><input type="checkbox" name="tech[]" value="Ton"> Ton / PA</label>
-        <label class="check"><input type="checkbox" name="tech[]" value="Licht"> Lichttechnik</label>
-        <label class="check"><input type="checkbox" name="tech[]" value="DJ"> DJ</label>
-        <label class="check"><input type="checkbox" name="tech[]" value="Bühne"> Bühne / Truss</label>
-        <label class="check"><input type="checkbox" name="tech[]" value="Mikro"> Mikrofone</label>
-        <label class="check"><input type="checkbox" name="tech[]" value="Beamer"> Beamer / Screen</label>
-      </div>
+    <h3 class="span-2 tech-title">Benötigte Technik</h3>
 
-      <textarea name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
-
-      <label class="check">
-        <input type="checkbox" required>
-        Ich habe die Datenschutzerklärung gelesen
+    <div class="check-grid span-2">
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="Ton">
+        <span>Ton / PA</span>
       </label>
 
-      <button type="submit">Anfrage senden</button>
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="Licht">
+        <span>Lichttechnik</span>
+      </label>
 
-    </form>
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="DJ">
+        <span>DJ</span>
+      </label>
+
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="Bühne">
+        <span>Bühne / Truss</span>
+      </label>
+
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="Mikro">
+        <span>Mikrofone</span>
+      </label>
+
+      <label class="check-field">
+        <input type="checkbox" name="tech[]" value="Beamer">
+        <span>Beamer / Screen</span>
+      </label>
+    </div>
+
+    <textarea class="span-2" name="notes" placeholder="Weitere Infos / Besonderheiten"></textarea>
+
+    <label class="span-2 dsgvo">
+      <input type="checkbox" required>
+      <span>Ich habe die Datenschutzerklärung gelesen</span>
+    </label>
+
+    <button class="span-2 btn-submit" type="submit">Anfrage senden</button>
+
+  </div>
+
+</form>
+
 
   </section>
 
@@ -130,3 +157,4 @@
 
 </body>
 </html>
+
