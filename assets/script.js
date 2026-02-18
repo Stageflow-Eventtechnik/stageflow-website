@@ -189,6 +189,140 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // ===== Kontakt: Stageflow Custom Select (nur Desktop, nur Kontaktseite) =====
+  {
+    const isContact = document.body.classList.contains("page-contact");
+    if (!isContact) return;
+
+    const isDesktop = () => window.matchMedia("(min-width: 801px)").matches;
+
+    const closeAll = (except = null) => {
+      document.querySelectorAll(".sf-select.open").forEach(w => {
+        if (w !== except) w.classList.remove("open");
+        const trig = w.querySelector(".sf-trigger");
+        if (trig) trig.setAttribute("aria-expanded", "false");
+      });
+    };
+
+    const build = (wrap) => {
+      const select = wrap.querySelector("select");
+      if (!select) return;
+
+      // Nicht doppelt bauen
+      if (wrap.dataset.sfBuilt === "1") return;
+      wrap.dataset.sfBuilt = "1";
+
+      // Trigger
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "sf-trigger";
+      trigger.setAttribute("aria-haspopup", "listbox");
+      trigger.setAttribute("aria-expanded", "false");
+
+      const label = document.createElement("span");
+      const arrow = document.createElement("span");
+      arrow.className = "sf-arrow";
+
+      trigger.appendChild(label);
+      trigger.appendChild(arrow);
+
+      // Menü
+      const menu = document.createElement("div");
+      menu.className = "sf-menu";
+      menu.setAttribute("role", "listbox");
+
+      const opts = Array.from(select.options);
+
+      const syncLabel = () => {
+        const opt = select.options[select.selectedIndex];
+        label.textContent = opt ? opt.textContent : "";
+      };
+
+      const rebuildOptions = () => {
+        menu.innerHTML = "";
+
+        opts.forEach((opt, idx) => {
+          const div = document.createElement("div");
+          div.className = "sf-option";
+          div.setAttribute("role", "option");
+          div.dataset.index = String(idx);
+          div.textContent = opt.textContent;
+
+          // Placeholder opt (erste Option ohne value)
+          if (idx === 0 && (opt.value === "" || opt.disabled)) {
+            div.classList.add("is-placeholder");
+          }
+
+          const selected = select.selectedIndex === idx;
+          div.setAttribute("aria-selected", selected ? "true" : "false");
+
+          div.addEventListener("click", () => {
+            select.selectedIndex = idx;
+            // change event, falls später genutzt
+            select.dispatchEvent(new Event("change", { bubbles: true }));
+
+            syncLabel();
+            closeAll();
+            trigger.focus();
+          });
+
+          menu.appendChild(div);
+        });
+      };
+
+      // Toggle
+      trigger.addEventListener("click", () => {
+        const willOpen = !wrap.classList.contains("open");
+        closeAll(wrap);
+        wrap.classList.toggle("open", willOpen);
+        trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        if (willOpen) rebuildOptions();
+      });
+
+      // Außenklick schließt
+      document.addEventListener("click", (e) => {
+        if (!wrap.contains(e.target)) {
+          wrap.classList.remove("open");
+          trigger.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Sync bei programmatic change
+      select.addEventListener("change", () => {
+        syncLabel();
+        menu.querySelectorAll(".sf-option").forEach((d, i) => {
+          d.setAttribute("aria-selected", select.selectedIndex === i ? "true" : "false");
+        });
+      });
+
+      // Grundzustand
+      syncLabel();
+      wrap.appendChild(trigger);
+      wrap.appendChild(menu);
+    };
+
+    const init = () => {
+      if (!isDesktop()) {
+        // Auf Mobile keine Custom-Selects offen lassen
+        closeAll();
+        return;
+      }
+      document.querySelectorAll(".sf-select").forEach(build);
+    };
+
+    init();
+    window.addEventListener("resize", () => {
+      closeAll();
+      init();
+    });
+
+    // ESC schließt
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      closeAll();
+    });
+  }
+
   // ===== Kontaktformular (Fallback mailto nur wenn action="#") =====
   {
     const form = document.getElementById("contactForm");
