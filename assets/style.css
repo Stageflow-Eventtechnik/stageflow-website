@@ -402,3 +402,48 @@ footer{
     text-align:center;
   }
 }
+
+/* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
+@media (max-width: 900px){
+
+  /* altes Menü standardmäßig AUS */
+  .nav .menu{ 
+    display:none !important;
+  }
+
+  /* wenn nav "open" ist, Menü EIN */
+  .nav.open .menu{
+    display:flex !important;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+
+  /* Hamburger sichtbar */
+  .nav-toggle{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* Dropdown-Container */
+  .nav-links{
+    display:none;
+    position:absolute;
+    left:0; right:0;
+    top:72px;
+    background:#0b0b0ff2;
+    border-bottom:1px solid #ffffff14;
+    padding:14px 20px 18px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .nav.open .nav-links{ display:flex; }
+
+  .nav-cta{
+    width:100%;
+    text-align:center;
+  }
+}
