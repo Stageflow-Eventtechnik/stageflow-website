@@ -147,3 +147,122 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ===== Review Form (klickbare Sterne + Danke-Seite) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("reviewForm");
+  if (!form) return;
+
+  const starsWrap = form.querySelector(".star-rating");
+  const stars = form.querySelectorAll(".star");
+  const starsValue = form.querySelector("#starsValue");
+  const status = form.querySelector("#reviewStatus");
+
+  function setStars(val){
+    const v = Math.max(1, Math.min(5, Number(val) || 5));
+    if (starsValue) starsValue.value = String(v);
+    stars.forEach((btn) => {
+      const on = Number(btn.dataset.value) <= v;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-checked", on ? "true" : "false");
+    });
+  }
+
+  // Default: 5 Sterne
+  setStars(starsValue?.value || 5);
+
+  stars.forEach((btn) => {
+    btn.setAttribute("role","radio");
+    btn.addEventListener("click", () => setStars(btn.dataset.value));
+  });
+
+  // Tastatur: Pfeile links/rechts, 1-5
+  starsWrap?.addEventListener("keydown", (e) => {
+    const current = Number(starsValue?.value || 5);
+    if (e.key === "ArrowLeft") { e.preventDefault(); setStars(current - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); setStars(current + 1); }
+    if (/^[1-5]$/.test(e.key)) { e.preventDefault(); setStars(e.key); }
+  });
+
+  // Formspree per AJAX abschicken -> Danke-Seite
+  form.addEventListener("submit", async (e) => {
+    const action = form.getAttribute("action") || "";
+    if (!action.includes("formspree.io")) return;
+
+    e.preventDefault();
+    if (status) status.textContent = "Wird gesendet…";
+
+    try{
+      const data = new FormData(form);
+      const res = await fetch(action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok){
+        window.location.href = "danke.html";
+      } else {
+        if (status) status.textContent = "Ups – das hat nicht geklappt. Bitte später nochmal versuchen.";
+      }
+    } catch(err){
+      if (status) status.textContent = "Keine Verbindung. Bitte prüfe dein Internet und versuch es erneut.";
+    }
+  });
+});
+
+
+// ===== Bewertungen (JSON) laden und anzeigen =====
+(function () {
+  const list = document.getElementById("reviewsList");
+  if (!list) return;
+
+  fetch("assets/bewertungen.json", { cache: "no-store" })
+    .then(r => {
+      if (!r.ok) throw new Error("load failed");
+      return r.json();
+    })
+    .then(items => {
+      if (!Array.isArray(items) || items.length === 0){
+        list.innerHTML = '<p style="opacity:.8">Noch keine Bewertungen vorhanden.</p>';
+        return;
+      }
+
+      // Neueste zuerst (wenn date vorhanden)
+      items.sort((a,b) => (b.date || "").localeCompare(a.date || ""));
+
+      const starText = (n) => {
+        const num = Math.max(0, Math.min(5, parseInt(n,10) || 0));
+        return "★★★★★☆☆☆☆☆".slice(5 - num, 10 - num); // produces correct? Let's simpler below
+      };
+
+      const stars = (n) => {
+        const num = Math.max(0, Math.min(5, parseInt(n,10) || 0));
+        return "★★★★★".slice(0, num) + "☆☆☆☆☆".slice(0, 5 - num);
+      };
+
+      const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+      list.innerHTML = items.map(it => {
+        const name = esc(it.name || "Anonym");
+        const txt = esc(it.text || it.message || "");
+        const evt = esc(it.event || "");
+        const date = esc(it.date || "");
+        const starStr = stars(it.stars);
+        const aria = `${parseInt(it.stars,10)||0} von 5 Sternen`;
+
+        const meta = [evt, date].filter(Boolean).join(" • ");
+        return `
+<article class="review">
+  <div class="review-head">
+    <strong>${name}</strong>
+    <span class="stars" aria-label="${aria}">${starStr}</span>
+  </div>
+  <p>${txt}</p>
+  ${meta ? `<small>Event: ${meta}</small>` : ``}
+</article>`;
+      }).join("\n");
+    })
+    .catch(() => {
+      list.innerHTML = '<p style="opacity:.8">Bewertungen konnten nicht geladen werden.</p>';
+    });
+})();
