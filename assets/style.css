@@ -811,16 +811,26 @@ footer{
 
   --------------------------------
 
-  /* Kontakt: Mobile overflow verhindern (nur DSGVO-Zeile) */
+/* ===== Kontakt – Mobile kompaktere Checkboxen ===== */
 @media (max-width: 520px){
-  .page-contact .dsgvo{
-    white-space: normal;   /* darf umbrechen */
-    align-items: flex-start;
-    line-height: 1.35;
+
+  .page-contact .check-grid{
+    gap:12px; /* etwas weniger Abstand */
   }
 
-  .page-contact .dsgvo span{
-    display: inline-block;
+  .page-contact .check-field{
+    padding:8px 10px;      /* weniger Innenabstand */
+    border-radius:14px;    /* weniger rund */
   }
+
+  .page-contact .check-field span{
+    font-size:14px;        /* etwas kleiner */
+  }
+
+  .page-contact .check-field input{
+    width:16px;
+    height:16px;
+  }
+
 }
 
