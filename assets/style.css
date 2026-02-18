@@ -19,16 +19,11 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:auto;padding:0 20px}
 section{padding:80px 0}
 
-/* ===== NAV ===== */
 .nav{
-  position:sticky;
-  top:0;
+  position:sticky;top:0;
   background:#0b0b0fcc;
   backdrop-filter:blur(10px);
   border-bottom:1px solid #ffffff14;
-
-  /* FIX: sicher über normalem Content */
-  z-index: 10000;
 }
 
 .nav-inner{
@@ -68,7 +63,6 @@ section{padding:80px 0}
   padding:24px;
   margin:10px 0;
 }
-
 footer{
   border-top:1px solid #ffffff14;
   padding:30px;
@@ -76,14 +70,14 @@ footer{
   opacity:.7;
 }
 
-/* ===== STARTSEITE HERO ===== */
+/* ===== STARTSEITE HERO (wieder wie dein Screenshot) ===== */
 .hero{
   min-height: calc(100vh - 72px);
   display:flex;
   align-items:center;
   padding: 40px 0 80px;
 
-  /* style.css liegt in assets -> ./hero.jpg = assets/hero.jpg */
+  /* WICHTIG: style.css liegt in assets -> ./hero.jpg = assets/hero.jpg */
   background:
     linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.85)),
     url("./hero.jpg") center/cover no-repeat;
@@ -211,16 +205,10 @@ footer{
   align-items:center;
   justify-content:center;
   padding: 18px;
-
-  /* FIX: muss über NAV + Mobile-Menü liegen */
-  z-index: 20000;
-
-  pointer-events: none; /* FIX: darf geschlossen keine Klicks fressen */
+  z-index: 999;
 }
-.lightbox.open{
-  display:flex;
-  pointer-events: auto;
-}
+
+.lightbox.open{ display:flex; }
 
 .lightbox-inner{
   position:relative;
@@ -353,7 +341,10 @@ footer{
 .acc-item.active .acc-content{ max-height: 220px; }
 .acc-item.active .acc-btn span{ transform: rotate(45deg); }
 
-/* ===== Mobile Navigation (nur 1 Block, stabil) ===== */
+
+
+
+/* ===== Mobile Navigation ===== */
 .nav-toggle{
   display:none;
   background: transparent;
@@ -380,32 +371,20 @@ footer{
     gap:12px;
   }
 
-  .nav-toggle{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
+  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
 
-  /* Menü als Overlay, damit es lesbar ist & nix drüber liegt */
   .nav-links{
     display:none;
-    position:fixed;
+    position:absolute;
     left:0;
     right:0;
     top:72px;
-    bottom:0;
-    background: rgba(0,0,0,.96);
-    backdrop-filter: blur(8px);
+    background:#0b0b0ff2;
     border-bottom:1px solid #ffffff14;
     padding:14px 20px 18px;
     flex-direction:column;
     align-items:flex-start;
     gap:14px;
-
-    /* FIX: Mobile Menü über Content, aber unter Lightbox */
-    z-index: 15000;
-
-    overflow-y:auto;
   }
 
   .nav.open .nav-links{ display:flex; }
@@ -425,61 +404,68 @@ footer{
   }
 }
 
-/* ===== Bewertungen ===== */
-.reviews{padding:80px 0}
-.review-list{display:grid;gap:16px}
-.review{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:16px;
-  padding:16px;
-}
-.review-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
-.stars{letter-spacing:2px;white-space:nowrap}
-@media (min-width: 800px){
-  .review-list{grid-template-columns:1fr 1fr}
+/* Fix: Mobile Menü immer über Content (aber unter Lightbox) */
+@media (max-width: 900px){
+  .nav{
+    z-index: 100;          /* nav über Seite */
+  }
+  .nav-links{
+    z-index: 101;          /* dropdown über Inhalt */
+  }
 }
 
-/* ===== Bewertungsformular (klickbare Sterne) ===== */
-.review-form label{display:block;margin:14px 0}
-.review-form input,
-.review-form textarea,
-.review-form select{
-  width:100%;
-  margin-top:8px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(255,255,255,0.06);
-  color:var(--text);
-  font-family:inherit;
-  outline:none;
-}
-.review-form textarea{resize:vertical}
 
-.star-field{
-  border:0;
-  padding:0;
-  margin:14px 0;
+/* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
+@media (max-width: 900px){
+
+  /* altes Menü standardmäßig AUS */
+  .nav .menu{ 
+    display:none !important;
+  }
+
+  /* wenn nav "open" ist, Menü EIN */
+  .nav.open .menu{
+    display:flex !important;
+    flex-direction:column;
+    gap:10px;
+    width:100%;
+  }
+
+  /* Hamburger sichtbar */
+  .nav-toggle{
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* Dropdown-Container */
+  .nav-links{
+    display:none;
+    position:absolute;
+    left:0; right:0;
+    top:72px;
+    background:#0b0b0ff2;
+    border-bottom:1px solid #ffffff14;
+    padding:14px 20px 18px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .nav.open .nav-links{ display:flex; }
+
+  .nav-cta{
+    width:100%;
+    text-align:center;
+  }
 }
-.star-field legend{
-  font-weight:600;
-  opacity:.9;
-  margin-bottom:8px;
+
+
+/* Mobile Menu Overlay Fix */
+@media (max-width: 768px) {
+  .nav-links {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+  }
 }
-.star-rating{display:flex;gap:10px;align-items:center}
-.star{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.18);
-  background:rgba(255,255,255,0.06);
-  color:rgba(255,255,255,0.45);
-  font-size:26px;
-  line-height:1;
-  cursor:pointer;
-}
-.star.is-on{color:var(--accent); border-color: rgba(180,230,60,0.45)}
-.hint{opacity:.8;font-size:.95rem}
-.form-status{margin-top:10px;min-height:1.2em;opacity:.9}
-.thanks-card{max-width:760px;margin:0 auto}
