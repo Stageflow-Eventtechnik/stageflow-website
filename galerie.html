@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie – Stageflow</title>
+
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <div class="nav-inner wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Stageflow Logo">
+    </a>
+    <nav class="menu">
+      <a href="index.html">Start</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+    <a class="btn" href="kontakt.html">Event anfragen</a>
+  </div>
+</div>
+
+<section class="wrap">
+  <h1>Galerie</h1>
+  <p style="opacity:.8; max-width: 70ch;">
+    Wähle eine Kategorie und klicke auf ein Bild. Dann kannst du mit den Pfeilen durchswitchen und mit ✕ schließen.
+  </p>
+
+  <!-- KATEGORIEN -->
+  <div class="gallery-tabs" id="galleryTabs">
+    <button class="tab active" data-cat="geburtstag50">Geburtstag 50 Jahre</button>
+    <button class="tab" data-cat="hochzeit">Hochzeit</button>
+    <button class="tab" data-cat="firma">Firmenfeier</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<footer>© Stageflow Eventtechnik</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-inner" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Schließen">✕</button>
+
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Vorheriges Bild">❮</button>
+    <img class="lb-img" id="lbImg" alt="Galerie Bild">
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Nächstes Bild">❯</button>
+
+    <div class="lb-caption">
+      <div class="lb-title" id="lbTitle"></div>
+      <div class="lb-count" id="lbCount"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Externes Script -->
+<script src="assets/script.js"></script>
+
+</body>
+</html>
