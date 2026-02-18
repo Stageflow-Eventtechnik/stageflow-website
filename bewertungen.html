@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewertungen – Stageflow</title>
+
+<link href="assets/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <div class="nav-inner wrap">
+
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Stageflow Logo">
+    </a>
+
+    <!-- Hamburger Button (nur Mobile sichtbar per CSS) -->
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
+      ☰
+    </button>
+
+    <!-- Alles was einklappt -->
+    <div class="nav-links" id="navLinks">
+      <nav class="menu">
+        <a href="index.html">Start</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="bewertungen.html">Bewertungen</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+
+      <a class="btn nav-cta" href="kontakt.html">Event anfragen</a>
+    </div>
+
+  </div>
+</div>
+
+<section class="wrap">
+  <h1>Bewertungen</h1>
+  <p>Hier findest du Rezensionen von bisherigen Kunden – und kannst selbst eine Bewertung abgeben.</p>
+</section>
+
+<section class="wrap reviews" style="padding-top:20px">
+  <h2>Alle Bewertungen</h2>
+
+  <div class="review-list" id="reviewsList">
+    <p style="opacity:.8">Bewertungen werden geladen…</p>
+  </div>
+
+  <p class="hint" style="margin-top:14px">
+    Hinweis: Online werden nur freigegebene Bewertungen angezeigt.
+  </p>
+</section>
+
+<section class="wrap" style="padding-top:10px">
+  <h2>Bewertung abgeben</h2>
+
+  <form id="reviewForm" class="review-form" action="https://formspree.io/f/xgolzenp" method="POST">
+
+    <label>
+      Name
+      <input type="text" name="name" required>
+    </label>
+
+    <fieldset class="star-field">
+      <legend>Sterne</legend>
+      <div class="star-rating" aria-label="Sterne auswählen">
+        <button class="star" type="button" data-value="1" aria-label="1 Stern">★</button>
+        <button class="star" type="button" data-value="2" aria-label="2 Sterne">★</button>
+        <button class="star" type="button" data-value="3" aria-label="3 Sterne">★</button>
+        <button class="star" type="button" data-value="4" aria-label="4 Sterne">★</button>
+        <button class="star" type="button" data-value="5" aria-label="5 Sterne">★</button>
+      </div>
+      <input type="hidden" name="stars" id="rating" value="5" required>
+    </fieldset>
+
+    <label>
+      Art des Events (optional)
+      <input type="text" name="event">
+    </label>
+
+    <label>
+      Rezension
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+
+    <button class="btn" type="submit">Absenden</button>
+    <div class="form-status" id="formStatus" aria-live="polite"></div>
+
+    <p class="hint">
+      Hinweis: Bewertungen werden nach Prüfung veröffentlicht.
+    </p>
+  </form>
+</section>
+
+<footer>
+© Stageflow Eventtechnik
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
