@@ -529,3 +529,35 @@ footer{
   }
 
 }
+
+
+/* FIX: Navbar + Hamburger immer über Galerie (mobile) */
+@media (max-width: 900px) {
+  .nav{
+    position: sticky;     /* bleibt oben */
+    top: 0;
+    z-index: 20000;       /* über Galerie */
+  }
+
+  .nav-inner,
+  .nav-toggle{
+    position: relative;
+    z-index: 20001;       /* Button garantiert klickbar */
+  }
+
+  /* Mobile Menü als Overlay */
+  .nav-links{
+    position: fixed;
+    top: 72px;            /* Höhe deiner Navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(8px);
+
+    z-index: 19999;
+    overflow-y: auto;
+  }
+}
+
