@@ -479,3 +479,36 @@ footer{
 .hint{opacity:.8;font-size:.95rem}
 .form-status{margin-top:10px;min-height:1.2em;opacity:.9}
 .thanks-card{max-width:760px;margin:0 auto}
+
+
+/* === HARD FIX: NAV IMMER ÜBER ALLEM + KLICKBAR === */
+.nav{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2147483647 !important; /* maximal hoch */
+}
+
+/* Platz schaffen, damit die fixe Nav nicht den Content überdeckt */
+body{
+  padding-top: 72px;
+}
+
+/* Mobile Menü als Vollbild-Overlay, ebenfalls ganz oben */
+@media (max-width: 900px){
+  .nav-links{
+    position: fixed !important;
+    top: 72px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    background: rgba(0,0,0,0.96) !important;
+    backdrop-filter: blur(8px);
+
+    z-index: 2147483646 !important;
+    overflow-y: auto !important;
+  }
+}
+
