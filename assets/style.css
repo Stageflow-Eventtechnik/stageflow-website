@@ -404,16 +404,6 @@ footer{
   }
 }
 
-/* Fix: Mobile Menü immer über Content (aber unter Lightbox) */
-@media (max-width: 900px){
-  .nav{
-    z-index: 100;          /* nav über Seite */
-  }
-  .nav-links{
-    z-index: 101;          /* dropdown über Inhalt */
-  }
-}
-
 
 /* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
 @media (max-width: 900px){
@@ -461,11 +451,61 @@ footer{
 }
 
 
-/* Mobile Menu Overlay Fix */
-@media (max-width: 768px) {
-  .nav-links {
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(6px);
-    z-index: 9999;
-  }
+/* ===== Bewertungen ===== */
+.reviews{padding:80px 0}
+.review-list{display:grid;gap:16px}
+.review{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  padding:16px;
 }
+.review-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.stars{letter-spacing:2px;white-space:nowrap}
+@media (min-width: 800px){
+  .review-list{grid-template-columns:1fr 1fr}
+}
+
+/* ===== Bewertungsformular (klickbare Sterne) ===== */
+.review-form label{display:block;margin:14px 0}
+.review-form input,
+.review-form textarea,
+.review-form select{
+  width:100%;
+  margin-top:8px;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.06);
+  color:var(--text);
+  font-family:inherit;
+  outline:none;
+}
+.review-form textarea{resize:vertical}
+
+.star-field{
+  border:0;
+  padding:0;
+  margin:14px 0;
+}
+.star-field legend{
+  font-weight:600;
+  opacity:.9;
+  margin-bottom:8px;
+}
+.star-rating{display:flex;gap:10px;align-items:center}
+.star{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.18);
+  background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.45);
+  font-size:26px;
+  line-height:1;
+  cursor:pointer;
+}
+.star.is-on{color:var(--accent); border-color: rgba(180,230,60,0.45)}
+.hint{opacity:.8;font-size:.95rem}
+.form-status{margin-top:10px;min-height:1.2em;opacity:.9}
+.thanks-card{max-width:760px;margin:0 auto}
