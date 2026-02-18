@@ -702,3 +702,20 @@ footer{
     gap:10px;
   }
 }
+
+
+/* ===== Kontakt – Desktop Select Dark Fix ===== */
+.page-contact .review-form select{
+  background-color: rgba(0,0,0,.22);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.14);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Dropdown Optionen */
+.page-contact .review-form select option{
+  background-color: #1a1a22;
+  color: #fff;
+}
