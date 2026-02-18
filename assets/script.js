@@ -141,12 +141,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // optional: beim Klick auf Link wieder schließen
-  if (linksWrap) {
+
     linksWrap.addEventListener("click", (e) => {
       if (e.target.tagName === "A") {
         nav.classList.remove("open");
         toggle.textContent = "☰";
       }
     });
-  }
 });
