@@ -703,24 +703,98 @@ footer{
   }
 }
 
+-------------------------------------------------------------
 
-/* ===== Kontakt – Select im Stageflow Look ===== */
-.page-contact .review-form select{
-  background-color: rgba(0,0,0,.22);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.14);
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  font-family: inherit;      /* gleiche Schrift */
-  font-weight: 600;
-}
+/* ===== Stageflow Custom Select (nur Kontakt + Desktop) ===== */
+@media (min-width: 801px){
 
-/* Dropdown Liste */
-.page-contact .review-form select option{
-  background-color: #1a1a22;
-  color: #fff;
-  font-family: inherit;
-  font-weight: 500;
+  .page-contact .sf-select{
+    position: relative;
+    width: 100%;
+  }
+
+  /* Das echte select bleibt da (für Form Submit), aber unsichtbar */
+  .page-contact .sf-select select{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .page-contact .sf-select .sf-trigger{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    padding:12px 14px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.14);
+    background: rgba(0,0,0,.22);
+    color: var(--text);
+    font-family: inherit;
+    font-weight:600;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .page-contact .sf-select .sf-trigger:focus{
+    outline:none;
+    border-color: rgba(180,230,60,.45);
+    box-shadow: 0 0 0 4px rgba(180,230,60,.10);
+  }
+
+  .page-contact .sf-select .sf-arrow{
+    width: 0;
+    height: 0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-top:7px solid rgba(255,255,255,.8);
+    opacity:.9;
+    flex: 0 0 auto;
+  }
+
+  .page-contact .sf-select.open .sf-arrow{
+    transform: rotate(180deg);
+  }
+
+  .page-contact .sf-select .sf-menu{
+    position:absolute;
+    left:0;
+    right:0;
+    top: calc(100% + 8px);
+    z-index: 50;
+
+    background: rgba(26,26,34,.98);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    display:none;
+  }
+
+  .page-contact .sf-select.open .sf-menu{
+    display:block;
+  }
+
+  .page-contact .sf-select .sf-option{
+    padding:12px 14px;
+    cursor:pointer;
+    font-weight:600;
+    opacity:.95;
+  }
+
+  .page-contact .sf-select .sf-option:hover{
+    background: rgba(180,230,60,.12);
+  }
+
+  .page-contact .sf-select .sf-option[aria-selected="true"]{
+    background: rgba(180,230,60,.18);
+  }
+
+  .page-contact .sf-select .sf-option.is-placeholder{
+    opacity:.7;
+  }
 }
 
