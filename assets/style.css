@@ -809,3 +809,18 @@ footer{
 .page-contact .check-field{
   display:flex;
 
+  --------------------------------
+
+  /* Kontakt: Mobile overflow verhindern (nur DSGVO-Zeile) */
+@media (max-width: 520px){
+  .page-contact .dsgvo{
+    white-space: normal;   /* darf umbrechen */
+    align-items: flex-start;
+    line-height: 1.35;
+  }
+
+  .page-contact .dsgvo span{
+    display: inline-block;
+  }
+}
+
