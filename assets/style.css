@@ -785,33 +785,27 @@ footer{
 
 ----------------------------------------------------------------------------------------
 
-/* ===== Kontaktformular: Mobile Overflow Fix (nur Kontaktseite) ===== */
-.page-contact .review-form{
-  overflow: hidden;                 /* verhindert “rauslaufen” bei runden Ecken */
-}
+/* ===== Kontaktseite – stabile Checkbox Grid Fix ===== */
 
-.page-contact .review-form input,
-.page-contact .review-form select,
-.page-contact .review-form textarea,
-.page-contact .review-form button{
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;           /* nur hier, nicht global */
-}
-
-.page-contact .form-grid{
-  min-width: 0;                     /* wichtig für Grid-Overflows */
-}
-
-.page-contact .form-grid > *{
-  min-width: 0;                     /* verhindert, dass Inhalte Spalten sprengen */
+.page-contact .check-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:16px;
+  width:100%;
 }
 
 @media (max-width: 800px){
-  .page-contact .form-grid{
-    grid-template-columns: 1fr !important;
-  }
-  .page-contact .span-2{
-    grid-column: auto !important;
+  .page-contact .check-grid{
+    grid-template-columns: 1fr;
   }
 }
+
+/* WICHTIG: verhindert dass Items die Spalte sprengen */
+.page-contact .check-grid > *{
+  min-width:0;
+}
+
+/* Checkbox-Kachel */
+.page-contact .check-field{
+  display:flex;
+
