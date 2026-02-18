@@ -704,7 +704,7 @@ footer{
 }
 
 
-/* ===== Kontakt – Desktop Select Dark Fix ===== */
+/* ===== Kontakt – Select im Stageflow Look ===== */
 .page-contact .review-form select{
   background-color: rgba(0,0,0,.22);
   color: #fff;
@@ -712,10 +712,15 @@ footer{
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  font-family: inherit;      /* gleiche Schrift */
+  font-weight: 600;
 }
 
-/* Dropdown Optionen */
+/* Dropdown Liste */
 .page-contact .review-form select option{
   background-color: #1a1a22;
   color: #fff;
+  font-family: inherit;
+  font-weight: 500;
 }
+
