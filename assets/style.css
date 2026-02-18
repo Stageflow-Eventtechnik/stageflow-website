@@ -33,13 +33,7 @@ section{padding:80px 0}
   padding:14px 20px;
 }
 
-/* NAV Logo (klein + passt immer) */
-.nav .brand img{
-  height:74px;
-  width:auto;
-  max-width:180px;
-  object-fit:contain;
-}
+.brand img{height:40px}
 
 .menu a{
   margin:0 10px;
@@ -70,280 +64,7 @@ footer{
   opacity:.7;
 }
 
-/* ===== STARTSEITE HERO (wieder wie dein Screenshot) ===== */
-.hero{
-  min-height: calc(100vh - 72px);
-  display:flex;
-  align-items:center;
-  padding: 40px 0 80px;
-
-  /* WICHTIG: style.css liegt in assets -> ./hero.jpg = assets/hero.jpg */
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.85)),
-    url("./hero.jpg") center/cover no-repeat;
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 40px;
-  align-items:center;
-}
-
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin: 18px 0 10px;
-}
-
-/* Optional, falls du einen Ghost-Button nutzt */
-.btn-ghost{
-  background: transparent;
-  border: 2px solid rgba(180,230,60,.55);
-  color:#fff;
-}
-
-/* Logo unter den Buttons im Hero */
-.hero-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  opacity:.75;
-  margin-top: 10px;
-}
-.hero-brand img{
-  height:22px;
-  width:auto;
-  max-width:140px;
-  object-fit:contain;
-}
-
-/* Rechte Box im Hero */
-.hero-card{
-  background:#1a1a22cc;
-  border:1px solid #ffffff14;
-  border-radius:var(--radius);
-  padding:26px;
-  backdrop-filter:blur(10px);
-}
-.hero-card ul{padding-left:18px}
-.hero-card-btn{
-  width:100%;
-  text-align:center;
-}
-
-/* ===== Galerie (Kategorien + Grid + Lightbox) ===== */
-.gallery-tabs{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin: 18px 0 18px;
-}
-
-.tab{
-  border:1px solid #ffffff14;
-  background: rgba(0,0,0,.25);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:999px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.tab:hover{ border-color: rgba(180,230,60,.55); }
-.tab.active{
-  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
-  color:#0b0b0f;
-  border-color: transparent;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap:12px;
-}
-
-.g-item{
-  grid-column: span 4;
-  padding:0;
-  border:none;
-  background: transparent;
-  border-radius: 18px;
-  overflow:hidden;
-  position:relative;
-  cursor:pointer;
-  border:1px solid #ffffff14;
-}
-
-.g-item img{
-  width:100%;
-  height: 240px;
-  object-fit: cover;
-  display:block;
-  transition:.25s;
-}
-
-.g-item:hover img{ transform: scale(1.04); }
-
-.g-overlay{
-  position:absolute;
-  left:0; right:0; bottom:0;
-  padding:12px 12px 10px;
-  font-weight:800;
-  font-size:14px;
-  background: linear-gradient(180deg, transparent, rgba(0,0,0,.78));
-}
-
-/* Lightbox */
-.lightbox{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.86);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding: 18px;
-  z-index: 999;
-}
-
-.lightbox.open{ display:flex; }
-
-.lightbox-inner{
-  position:relative;
-  width:min(1100px, 100%);
-  background: rgba(17,17,23,.75);
-  border:1px solid #ffffff14;
-  border-radius: 22px;
-  overflow:hidden;
-  backdrop-filter: blur(12px);
-}
-
-.lb-img{
-  width:100%;
-  max-height: 78vh;
-  object-fit: contain;
-  background:#0b0b0f;
-  display:block;
-}
-
-.lb-close{
-  position:absolute;
-  top:10px;
-  right:10px;
-  width:44px;
-  height:44px;
-  border-radius:999px;
-  border:1px solid #ffffff14;
-  background:#00000030;
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-  font-weight:800;
-  z-index:2;
-}
-
-.lb-close:hover{ border-color: rgba(180,230,60,.55); }
-
-.lb-nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:48px;
-  height:48px;
-  border-radius:999px;
-  border:1px solid #ffffff14;
-  background:#00000030;
-  color:#fff;
-  font-size:22px;
-  cursor:pointer;
-  font-weight:900;
-  z-index:2;
-}
-
-.lb-prev{ left:10px; }
-.lb-next{ right:10px; }
-.lb-nav:hover{ border-color: rgba(180,230,60,.55); }
-
-.lb-caption{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding: 12px 14px;
-  color:#fff;
-  border-top:1px solid #ffffff14;
-}
-
-.lb-title{ font-weight:800; opacity:.95; }
-.lb-count{ font-weight:700; opacity:.7; }
-
-/* Kategorie-Fix: Geburtstag50 (oft Hochkant) -> nicht hart beschneiden */
-#galleryGrid[data-cat="geburtstag50"] .g-item img{
-  object-fit: contain;
-  background: #0b0b0f;
-}
-
-@media(max-width: 900px){
-  .hero-grid{ grid-template-columns:1fr; }
-  .g-item{ grid-column: span 6; }
-}
-
-@media(max-width: 560px){
-  .g-item{ grid-column: span 12; }
-}
-
-/* ===== Accordion (Leistungen) ===== */
-.accordion{ margin-top: 20px; }
-
-.acc-item{
-  border: 1px solid #ffffff14;
-  border-radius: var(--radius);
-  margin-bottom: 12px;
-  overflow: hidden;
-  background: #1a1a22;
-}
-
-.acc-btn{
-  width: 100%;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 800;
-  padding: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.acc-btn span{
-  font-size: 24px;
-  color: var(--accent);
-  transition: transform .2s ease;
-}
-
-.acc-content{
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease;
-  padding: 0 20px;
-}
-
-.acc-content p{
-  margin: 0 0 20px;
-  opacity: .85;
-  line-height: 1.7;
-}
-
-.acc-item.active .acc-content{ max-height: 220px; }
-.acc-item.active .acc-btn span{ transform: rotate(45deg); }
-
-
-
-/* ===== Mobile Navigation ===== */
+/* ===== Mobile Navigation (Burger Menu) ===== */
 .nav-toggle{
   display:none;
   background: transparent;
@@ -356,6 +77,7 @@ footer{
   cursor:pointer;
 }
 
+/* Desktop: Links inline */
 .nav-links{
   display:flex;
   align-items:center;
@@ -370,48 +92,35 @@ footer{
     gap:12px;
   }
 
-  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+  /* Burger sichtbar */
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
 
+  /* Desktop-Menü standardmäßig aus */
+  .nav .menu{ display:none !important; }
+
+  /* Dropdown Container */
   .nav-links{
-    display:none;
+    display:none;                /* zu, bis .open */
     position:absolute;
     left:0;
     right:0;
-    top:72px;
+    top: calc(100% + 1px);       /* direkt unter die Navbar */
     background:#0b0b0ff2;
     border-bottom:1px solid #ffffff14;
     padding:14px 20px 18px;
     flex-direction:column;
     align-items:flex-start;
     gap:14px;
+    z-index: 1000;
   }
 
   .nav.open .nav-links{ display:flex; }
 
-  .menu{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    width:100%;
-  }
-
-  .menu a{ margin:0; }
-
-  .nav-cta{
-    width:100%;
-    text-align:center;
-  }
-}
-
-/* ===== Mobile NAV: alte Menüanzeige zuverlässig abschalten ===== */
-@media (max-width: 900px){
-
-  /* altes Menü standardmäßig AUS */
-  .nav .menu{ 
-    display:none !important;
-  }
-
-  /* wenn nav "open" ist, Menü EIN */
+  /* Im offenen Menü: Links wieder anzeigen */
   .nav.open .menu{
     display:flex !important;
     flex-direction:column;
@@ -419,28 +128,7 @@ footer{
     width:100%;
   }
 
-  /* Hamburger sichtbar */
-  .nav-toggle{
-    display:inline-flex !important;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* Dropdown-Container */
-  .nav-links{
-    display:none;
-    position:absolute;
-    left:0; right:0;
-    top:72px;
-    background:#0b0b0ff2;
-    border-bottom:1px solid #ffffff14;
-    padding:14px 20px 18px;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:14px;
-  }
-
-  .nav.open .nav-links{ display:flex; }
+  .menu a{ margin:0; }
 
   .nav-cta{
     width:100%;
