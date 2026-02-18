@@ -449,3 +449,13 @@ footer{
     text-align:center;
   }
 }
+
+
+/* Mobile Menu Overlay Fix */
+@media (max-width: 768px) {
+  .nav-links {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+  }
+}
