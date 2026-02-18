@@ -2,109 +2,107 @@
 <html lang="de">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bewertungen – Stageflow</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bewertungen – Stageflow</title>
 
-<link href="assets/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-<div class="nav">
-  <div class="nav-inner wrap">
+  <!-- NAVIGATION -->
+  <div class="nav">
+    <div class="nav-inner wrap">
 
-    <a class="brand" href="index.html">
-      <img src="assets/logo.png" alt="Stageflow Logo">
-    </a>
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Stageflow Logo">
+      </a>
 
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
-      ☰
-    </button>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
+        ☰
+      </button>
 
-    <div class="nav-links" id="navLinks">
-      <nav class="menu">
-        <a href="index.html">Start</a>
-        <a href="leistungen.html">Leistungen</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="bewertungen.html">Bewertungen</a>
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </nav>
+      <div class="nav-links" id="navLinks">
+        <nav class="menu">
+          <a href="index.html">Start</a>
+          <a href="leistungen.html">Leistungen</a>
+          <a href="galerie.html">Galerie</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="bewertungen.html">Bewertungen</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
 
-      <a class="btn nav-cta" href="kontakt.html">Event anfragen</a>
+        <a class="btn nav-cta" href="kontakt.html">Event anfragen</a>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="wrap">
+    <h1>Bewertungen</h1>
+    <p>Hier kannst du eine Bewertung abgeben und Rezensionen anderer Kunden lesen.</p>
+  </section>
+
+  <!-- FORMULAR OBEN -->
+  <section class="wrap" style="padding-top:10px">
+    <h2>Bewertung abgeben</h2>
+
+    <form id="reviewForm" class="review-form" action="https://formspree.io/f/xgolzenp" method="POST">
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+
+      <fieldset class="star-field">
+        <legend>Sterne</legend>
+        <div class="star-rating" aria-label="Sterne auswählen">
+          <button class="star" type="button" data-value="1">★</button>
+          <button class="star" type="button" data-value="2">★</button>
+          <button class="star" type="button" data-value="3">★</button>
+          <button class="star" type="button" data-value="4">★</button>
+          <button class="star" type="button" data-value="5">★</button>
+        </div>
+        <input type="hidden" name="stars" id="starsValue" value="5" required>
+      </fieldset>
+
+      <label>
+        Art des Events (optional)
+        <input type="text" name="event">
+      </label>
+
+      <label>
+        Rezension
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <button class="btn" type="submit">Absenden</button>
+      <div class="form-status" id="reviewStatus"></div>
+
+      <p class="hint">
+        Hinweis: Bewertungen werden nach Prüfung veröffentlicht.
+      </p>
+    </form>
+  </section>
+
+  <!-- BEWERTUNGEN UNTEN -->
+  <section class="wrap reviews" style="padding-top:20px">
+    <h2>Alle Bewertungen</h2>
+
+    <div class="review-list" id="reviewsList">
+      <p style="opacity:.8">Bewertungen werden geladen…</p>
     </div>
 
-  </div>
-</div>
-
-<section class="wrap">
-  <h1>Bewertungen</h1>
-  <p>Hier kannst du eine Bewertung abgeben und Rezensionen anderer Kunden lesen.</p>
-</section>
-
-<!-- FORMULAR OBEN -->
-<section class="wrap" style="padding-top:10px">
-  <h2>Bewertung abgeben</h2>
-
-  <form id="reviewForm" class="review-form" action="https://formspree.io/f/xgolzenp" method="POST">
-
-    <label>
-      Name
-      <input type="text" name="name" required>
-    </label>
-
-    <fieldset class="star-field">
-      <legend>Sterne</legend>
-      <div class="star-rating" aria-label="Sterne auswählen">
-        <button class="star" type="button" data-value="1">★</button>
-        <button class="star" type="button" data-value="2">★</button>
-        <button class="star" type="button" data-value="3">★</button>
-        <button class="star" type="button" data-value="4">★</button>
-        <button class="star" type="button" data-value="5">★</button>
-      </div>
-      <input type="hidden" name="stars" id="starsValue" value="5" required>
-    </fieldset>
-
-    <label>
-      Art des Events (optional)
-      <input type="text" name="event">
-    </label>
-
-    <label>
-      Rezension
-      <textarea name="message" rows="5" required></textarea>
-    </label>
-
-    <button class="btn" type="submit">Absenden</button>
-    <div class="form-status" id="reviewStatus"></div>
-
-    <p class="hint">
-      Hinweis: Bewertungen werden nach Prüfung veröffentlicht.
+    <p class="hint" style="margin-top:14px">
+      Online werden nur freigegebene Bewertungen angezeigt.
     </p>
-  </form>
-</section>
+  </section>
 
-<!-- BEWERTUNGEN UNTEN -->
-<section class="wrap reviews" style="padding-top:20px">
-  <h2>Alle Bewertungen</h2>
+  <footer>© Stageflow Eventtechnik</footer>
 
-  <div class="review-list" id="reviewsList">
-    <p style="opacity:.8">Bewertungen werden geladen…</p>
-  </div>
-
-  <p class="hint" style="margin-top:14px">
-    Online werden nur freigegebene Bewertungen angezeigt.
-  </p>
-</section>
-
-<footer>
-© Stageflow Eventtechnik
-</footer>
-
-<script src="assets/script.js"></script>
+  <script src="assets/script.js"></script>
 </body>
+
 </html>
