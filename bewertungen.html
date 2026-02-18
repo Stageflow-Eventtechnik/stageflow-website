@@ -20,19 +20,17 @@
       <img src="assets/logo.png" alt="Stageflow Logo">
     </a>
 
-    <!-- Hamburger Button (nur Mobile sichtbar per CSS) -->
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen">
       ☰
     </button>
 
-    <!-- Alles was einklappt -->
     <div class="nav-links" id="navLinks">
       <nav class="menu">
         <a href="index.html">Start</a>
         <a href="leistungen.html">Leistungen</a>
         <a href="galerie.html">Galerie</a>
-        <a href="bewertungen.html">Bewertungen</a>
         <a href="kontakt.html">Kontakt</a>
+        <a href="bewertungen.html">Bewertungen</a>
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
       </nav>
@@ -45,21 +43,10 @@
 
 <section class="wrap">
   <h1>Bewertungen</h1>
-  <p>Hier findest du Rezensionen von bisherigen Kunden – und kannst selbst eine Bewertung abgeben.</p>
+  <p>Hier kannst du eine Bewertung abgeben und Rezensionen anderer Kunden lesen.</p>
 </section>
 
-<section class="wrap reviews" style="padding-top:20px">
-  <h2>Alle Bewertungen</h2>
-
-  <div class="review-list" id="reviewsList">
-    <p style="opacity:.8">Bewertungen werden geladen…</p>
-  </div>
-
-  <p class="hint" style="margin-top:14px">
-    Hinweis: Online werden nur freigegebene Bewertungen angezeigt.
-  </p>
-</section>
-
+<!-- FORMULAR OBEN -->
 <section class="wrap" style="padding-top:10px">
   <h2>Bewertung abgeben</h2>
 
@@ -73,11 +60,11 @@
     <fieldset class="star-field">
       <legend>Sterne</legend>
       <div class="star-rating" aria-label="Sterne auswählen">
-        <button class="star" type="button" data-value="1" aria-label="1 Stern">★</button>
-        <button class="star" type="button" data-value="2" aria-label="2 Sterne">★</button>
-        <button class="star" type="button" data-value="3" aria-label="3 Sterne">★</button>
-        <button class="star" type="button" data-value="4" aria-label="4 Sterne">★</button>
-        <button class="star" type="button" data-value="5" aria-label="5 Sterne">★</button>
+        <button class="star" type="button" data-value="1">★</button>
+        <button class="star" type="button" data-value="2">★</button>
+        <button class="star" type="button" data-value="3">★</button>
+        <button class="star" type="button" data-value="4">★</button>
+        <button class="star" type="button" data-value="5">★</button>
       </div>
       <input type="hidden" name="stars" id="starsValue" value="5" required>
     </fieldset>
@@ -93,12 +80,25 @@
     </label>
 
     <button class="btn" type="submit">Absenden</button>
-    <div class="form-status" id="reviewStatus" aria-live="polite"></div>
+    <div class="form-status" id="reviewStatus"></div>
 
     <p class="hint">
       Hinweis: Bewertungen werden nach Prüfung veröffentlicht.
     </p>
   </form>
+</section>
+
+<!-- BEWERTUNGEN UNTEN -->
+<section class="wrap reviews" style="padding-top:20px">
+  <h2>Alle Bewertungen</h2>
+
+  <div class="review-list" id="reviewsList">
+    <p style="opacity:.8">Bewertungen werden geladen…</p>
+  </div>
+
+  <p class="hint" style="margin-top:14px">
+    Online werden nur freigegebene Bewertungen angezeigt.
+  </p>
 </section>
 
 <footer>
