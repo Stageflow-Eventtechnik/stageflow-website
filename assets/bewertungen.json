@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rene Weber",
+    "stars": 5,
+    "event": "50 Bday",
+    "text": "super test",
+    "date": "2026-02-18"
+  },
+  {
+    "name": "Rene",
+    "stars": 3,
+    "event": "Hochzeit",
+    "text": "super toll",
+    "date": "2026-02-18"
+  },
+  {
+    "name": "Rene",
+    "stars": 3,
+    "event": "Hochzeit",
+    "text": "super toll",
+    "date": "2026-02-18"
+  }
+]
