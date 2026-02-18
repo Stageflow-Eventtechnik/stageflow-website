@@ -63,9 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const lbNext = document.getElementById("lbNext");
 
     if (
-      tabs && grid &&
-      lightbox && lbImg && lbTitle && lbCount &&
-      lbClose && lbPrev && lbNext
+      tabs &&
+      grid &&
+      lightbox &&
+      lbImg &&
+      lbTitle &&
+      lbCount &&
+      lbClose &&
+      lbPrev &&
+      lbNext
     ) {
       let currentCat =
         tabs.querySelector(".tab.active")?.dataset.cat ||
@@ -184,6 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
               const aria = `${parseInt(it.stars, 10) || 0} von 5 Sternen`;
               const meta = [evt, date].filter(Boolean).join(" • ");
 
+              const metaHtml = meta
+                ? `<small style="opacity:.75">Event: ${esc(meta)}</small>`
+                : "";
+
               return `
 <article class="review">
   <div class="review-head">
@@ -191,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <span class="stars" aria-label="${aria}">${starStr}</span>
   </div>
   <p>${txt}</p>
-  ${meta ? `<small style="opacity:.75">Event: ${meta}</small>` : ``}
+  ${metaHtml}
 </article>`;
             })
             .join("\n");
@@ -200,6 +210,70 @@ document.addEventListener("DOMContentLoaded", () => {
           list.innerHTML =
             '<p style="opacity:.8">Bewertungen konnten nicht geladen werden.</p>';
         });
+    }
+  }
+
+  // ===== Bewertungsformular (Sterne + Submit -> Danke-Seite) =====
+  {
+    const form = document.getElementById("reviewForm");
+    if (form) {
+      const starsWrap = form.querySelector(".star-rating");
+      const starBtns = starsWrap ? Array.from(starsWrap.querySelectorAll(".star")) : [];
+      const starsInput = form.querySelector("#starsValue");
+      const status = document.getElementById("reviewStatus");
+
+      const setStars = (val) => {
+        const n = Math.max(1, Math.min(5, parseInt(val, 10) || 5));
+        if (starsInput) starsInput.value = String(n);
+
+        starBtns.forEach((b) => {
+          const v = parseInt(b.getAttribute("data-value") || "0", 10);
+          b.classList.toggle("is-on", v <= n);
+          b.setAttribute("aria-pressed", v <= n ? "true" : "false");
+        });
+      };
+
+      // init
+      setStars(starsInput ? starsInput.value : 5);
+
+      starBtns.forEach((btn) => {
+        btn.addEventListener("click", () => setStars(btn.getAttribute("data-value")));
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setStars(btn.getAttribute("data-value"));
+          }
+        });
+      });
+
+      // Formspree submit via fetch + Redirect
+      form.addEventListener("submit", async (e) => {
+        const action = (form.getAttribute("action") || "").trim();
+        if (!action) return;
+
+        e.preventDefault();
+        if (status) status.textContent = "Senden…";
+
+        try {
+          const fd = new FormData(form);
+          if (!fd.get("stars")) fd.set("stars", (starsInput && starsInput.value) || "5");
+
+          const res = await fetch(action, {
+            method: "POST",
+            body: fd,
+            headers: { Accept: "application/json" },
+          });
+
+          if (res.ok) {
+            if (status) status.textContent = "Gesendet ✓";
+            window.location.href = "danke.html";
+          } else {
+            if (status) status.textContent = "Senden fehlgeschlagen. Bitte später erneut versuchen.";
+          }
+        } catch (err) {
+          if (status) status.textContent = "Netzwerkfehler. Bitte später erneut versuchen.";
+        }
+      });
     }
   }
 
@@ -221,7 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const select = wrap.querySelector("select");
         if (!select) return;
 
-        // nicht doppelt bauen
         if (wrap.dataset.sfBuilt === "1") return;
         wrap.dataset.sfBuilt = "1";
 
@@ -333,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form) {
       form.addEventListener("submit", (e) => {
         const action = (form.getAttribute("action") || "").trim();
-        if (action && action !== "#") return; // z.B. Formspree -> normal senden lassen
+        if (action && action !== "#") return;
 
         e.preventDefault();
         const data = new FormData(form);
