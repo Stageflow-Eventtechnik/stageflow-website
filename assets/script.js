@@ -400,62 +400,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-// ===== Kontaktformular (Fallback mailto nur wenn action="#") =====
-{
-  const form = document.getElementById("contactForm");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      const action = (form.getAttribute("action") || "").trim();
-      if (action && action !== "#") return; // z.B. Formspree -> normal senden lassen
+  // ===== Kontaktformular (Fallback mailto nur wenn action="#") =====
+  {
+    const form = document.getElementById("contactForm");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        const action = (form.getAttribute("action") || "").trim();
+        if (action && action !== "#") return;
 
-      e.preventDefault();
+        e.preventDefault();
+        const data = new FormData(form);
 
-      const fd = new FormData(form);
+        let body = "";
+        data.forEach((value, key) => {
+          body += `${key}: ${value}\n`;
+        });
 
-      // Mehrfachwerte korrekt einsammeln (tech[])
-      const tech = fd.getAll("tech[]").filter(Boolean);
-
-      const val = (key) => (fd.get(key) || "").toString().trim();
-
-      const lines = [
-        "STAGEFLOW – EVENTANFRAGE",
-        "========================",
-        "",
-        "KONTAKT",
-        `Name/Firma: ${val("name")}`,
-        `E-Mail:     ${val("email")}`,
-        `Telefon:    ${val("phone")}`,
-        "",
-        "EVENT",
-        `Datum:      ${val("date")}`,
-        `Ort:        ${val("city")}`,
-        `Eventtyp:   ${val("eventtype")}`,
-        `Gäste:      ${val("guests")}`,
-        `Location:   ${val("location")}`,
-        `Budget:     ${val("budget")}`,
-        `Zeitraum:   ${val("time")}`,
-        "",
-        "BENÖTIGTE TECHNIK",
-        tech.length ? `- ${tech.join("\n- ")}` : "- (keine Auswahl)",
-        "",
-        "NOTIZEN",
-        val("notes") ? val("notes") : "-",
-        "",
-        "—",
-        "Gesendet über stageflow-eventtechnik.de",
-      ];
-
-      // Betreff auch sauberer (mit Datum/Ort)
-      const subject = `Eventanfrage ${val("date")} – ${val("eventtype")} (${val("city")})`.trim();
-
-      // mailto braucht URL-encoding
-      const body = encodeURIComponent(lines.join("\n"));
-
-      window.location.href =
-        "mailto:info@stageflow-eventtechnik.de?subject=" +
-        encodeURIComponent(subject) +
-        "&body=" +
-        body;
-    });
+        window.location.href =
+          "mailto:info@stageflow-eventtechnik.de?subject=" +
+          encodeURIComponent("Eventanfrage") +
+          "&body=" +
+          encodeURIComponent(body);
+      });
+    }
   }
-}
+});
